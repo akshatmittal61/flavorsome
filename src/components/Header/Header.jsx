@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import navLinks from "../../utils/navigation";
 import socials from "../../utils/socials";
 import Button from "../Button/Button";
+import Navigation from "../Navigation/Navigation";
 import "./header.css";
 
 const Header = () => {
@@ -57,6 +58,7 @@ const Header = () => {
 					size="small"
 					variant="outline"
 				/>
+				<Navigation />
 			</div>
 		</header>
 	);

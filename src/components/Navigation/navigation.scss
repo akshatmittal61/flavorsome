@@ -1,0 +1,142 @@
+@import "../../config";
+.nav {
+	&-label {
+		position: fixed;
+		top: 1.5rem;
+		right: 2rem;
+		z-index: 10;
+		width: 3rem;
+		height: 3rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: var(--ast-global-color-1);
+		border-radius: 500px;
+		cursor: pointer;
+		background-color: var(--black);
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: var(--ast-global-color-8);
+		}
+		&__line {
+			background-color: var(--ast-global-color-4);
+			position: relative;
+			&,
+			&::before,
+			&::after {
+				width: 1.5rem;
+				height: 1px;
+				left: 0;
+				background-color: var(--ast-global-color-5);
+			}
+			&::before {
+				content: "";
+				position: absolute;
+				top: 6px;
+			}
+			&::after {
+				content: "";
+				position: absolute;
+				bottom: 6px;
+			}
+		}
+	}
+	&-container {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 30%;
+		height: 100%;
+		z-index: 9;
+		box-shadow: var(--shadow-3d);
+		background-color: var(--ast-global-color-8);
+		letter-spacing: 0.1rem;
+		background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		@include respond(tab) {
+			width: 50%;
+		}
+		@include respond(phone) {
+			width: 100%;
+		}
+	}
+	&-ul {
+		width: 100%;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		flex-flow: column;
+	}
+	&-li {
+		padding: 1rem 1.5rem;
+		font-size: 1.5rem;
+		line-height: 2rem;
+		text-transform: uppercase;
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		a {
+			padding: 0.25rem;
+			width: 100%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			position: relative;
+			color: var(--ast-global-color-5);
+			&::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				left: 0;
+				background-color: rgba(255, 255, 255, 0.25);
+				width: 100%;
+				height: 1px;
+			}
+			&:hover::after {
+				background-color: rgba(255, 255, 255, 0.5);
+			}
+			&:active::after,
+			&:focus::after {
+				background-color: rgba(255, 255, 255, 0.75);
+			}
+		}
+		&__icon {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0.5rem;
+		}
+		&__title {
+			padding: 0 1rem;
+		}
+	}
+	&-open &-label {
+		&__line {
+			width: 0;
+			&::before {
+				transform: translate(-0.75rem, -6px) rotate(-45deg);
+			}
+			&::after {
+				transform: translate(-0.75rem, 6px) rotate(45deg);
+			}
+		}
+	}
+	&-cover {
+		width: 0;
+		height: 0;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 8;
+		transition: none;
+	}
+	&-open &-cover {
+		width: 100vw;
+		height: 100vh;
+		background-color: var(--back-shadow);
+	}
+}
