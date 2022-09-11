@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import GlobalContext from "../../Context/GlobalContext";
 import navLinks from "../../utils/navigation";
 import MaterialIcons from "../MaterialIcons";
 import "./navigation.css";
 
 const Navigation = () => {
-	// const { openNav, setOpenNav } = useContext(GlobalContext);
 	const [openNav, setOpenNav] = useState(false);
 	useEffect(() => {
 		document.addEventListener("keydown", (e) => {
