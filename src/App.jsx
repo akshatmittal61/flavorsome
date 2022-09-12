@@ -1,10 +1,12 @@
 import AOS from "aos";
 import React, { useContext } from "react";
+import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import GlobalContext from "./context/GlobalContext";
 import { useContextData } from "./context/useContext";
+import Contact from "./pages/Contact/Contact";
 import "./style.css";
 
 const Wrapper = () => {
@@ -14,6 +16,9 @@ const Wrapper = () => {
 		<>
 			{breakpoint("mobile") && <Navigation />}
 			<Header />
+			<Routes>
+				<Route path="/contact" element={<Contact />} />
+			</Routes>
 			<Footer />
 		</>
 	);
