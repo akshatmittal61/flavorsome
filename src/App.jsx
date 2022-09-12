@@ -8,6 +8,7 @@ import GlobalContext from "./context/GlobalContext";
 import { useContextData } from "./context/useContext";
 import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 import "./style.css";
 
 const Wrapper = () => {
@@ -21,6 +22,7 @@ const Wrapper = () => {
 				location.pathname !== "/register" && <Header />}
 			<Routes>
 				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
 				<Route path="/contact" element={<Contact />} />
 			</Routes>
 			{location.pathname !== "/login" &&
