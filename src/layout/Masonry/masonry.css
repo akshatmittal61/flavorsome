@@ -1,0 +1,32 @@
+.masonry {
+  list-style: none;
+  column-gap: 0;
+  column-count: 3;
+}
+.masonry-box {
+  width: 100%;
+  height: auto;
+  break-inside: avoid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  overflow: hidden;
+}
+@media (max-width: 672px) {
+  .masonry {
+    column-count: 1;
+  }
+}
+@media (max-width: 880px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+@media (min-width: 880px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+
+/*# sourceMappingURL=masonry.css.map */

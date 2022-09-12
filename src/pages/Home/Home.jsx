@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import recipes from "../../utils/recipes";
 import _ from "lodash";
 import "./home.css";
+import Masonry, { MasonryBox } from "../../layout/Masonry/Masonry";
+import RecipeCard from "../../components/Recipe/Recipe";
 
 const Home = () => {
 	const heroRecipe = recipes[0];
@@ -49,6 +51,13 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
+			<Masonry lg={3} md={2} sm={1}>
+				{recipes.map((recipe) => (
+					<MasonryBox>
+						<RecipeCard {...recipe} />
+					</MasonryBox>
+				))}
+			</Masonry>
 		</main>
 	);
 };
