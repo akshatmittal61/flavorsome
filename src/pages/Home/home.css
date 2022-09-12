@@ -1,0 +1,76 @@
+.home {
+  width: 100%;
+}
+.home-hero {
+  width: 100%;
+  height: calc(100vh - var(--head-height));
+}
+.home-hero-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: column;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: lighten;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0 10%;
+}
+.home-hero-details {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+.home-hero-details h1 {
+  font-size: 4rem;
+  line-height: 4.5rem;
+  font-weight: 200;
+  width: fit-content;
+}
+.home-hero-details p {
+  width: 60%;
+  padding: 0 0.5rem;
+  margin: 1rem 0;
+}
+.home-hero-user {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: fit-content;
+  margin: 0.75rem 0;
+}
+.home-hero-user__image {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 500px;
+  overflow: hidden;
+}
+.home-hero-user__details {
+  height: 85%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin: auto 1rem;
+}
+.home-hero-user__details > * {
+  width: 100%;
+}
+.home-hero-user__details a {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+.home-hero-user__details span {
+  font-size: 0.875rem;
+  line-height: 1rem;
+}
+
+/*# sourceMappingURL=home.css.map */

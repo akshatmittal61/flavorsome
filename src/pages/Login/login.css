@@ -13,12 +13,6 @@
   background-position-x: center;
   background-position-y: bottom;
 }
-.login-back {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  transform: none;
-}
 .login-page {
   width: 65%;
   height: 100%;

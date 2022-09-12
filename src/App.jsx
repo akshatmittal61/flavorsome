@@ -13,6 +13,7 @@ import "aos/dist/aos.css";
 import "./style.css";
 import NotFound from "./pages/NotFound/NotFound";
 import { allowHeaderFooter } from "./utils";
+import Home from "./pages/Home/Home";
 
 const Wrapper = () => {
 	AOS.init();
@@ -23,6 +24,7 @@ const Wrapper = () => {
 			{breakpoint("mobile") && <Navigation />}
 			{allowHeaderFooter.includes(location.pathname) && <Header />}
 			<Routes>
+				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/contact" element={<Contact />} />

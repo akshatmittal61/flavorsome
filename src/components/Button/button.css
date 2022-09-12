@@ -136,6 +136,12 @@ button {
   outline: 2px solid var(--black);
   color: var(--black);
 }
+.btn-back {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  transform: none;
+}
 
 .icon {
   width: 2.5rem;

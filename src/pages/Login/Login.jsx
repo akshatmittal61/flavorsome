@@ -6,6 +6,7 @@ import MaterialIcons from "../../components/MaterialIcons";
 import { loginBg } from "../../utils/images";
 import "./login.css";
 import "../../components/Button/button.css";
+import Back from "../../components/Button/Back";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -37,9 +38,7 @@ const Login = () => {
 				}}
 				data-aos="fade-in"
 			></aside>
-			<button className="icon login-back" onClick={() => navigate(-1)}>
-				<MaterialIcons>arrow_back</MaterialIcons>
-			</button>
+			<Back />
 			<section className="login-page">
 				<div className="login-container">
 					<h1>Welcome!</h1>

@@ -1,3 +1,3 @@
-const allowHeaderFooter = ["/about", "/search"];
+const allowHeaderFooter = ["/", "/about", "/search"];
 
 export { allowHeaderFooter };

@@ -1,4 +1,5 @@
 import React from "react";
+import Back from "../../components/Button/Back";
 import Button from "../../components/Button/Button";
 import { svg404 } from "../../utils/images";
 import "./not-found.css";
@@ -29,6 +30,7 @@ const NotFound = () => {
 					</div>
 				</div>
 			</section>
+			<Back />
 		</main>
 	);
 };
