@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Back from "../../components/Button/Back";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
-import MaterialIcons from "../../components/MaterialIcons";
 import Row, { Col } from "../../layout/Responsive";
 import { registerBg } from "../../utils/images";
 import "./register.css";
 
 const Register = () => {
-	const navigate = useNavigate();
 	const [registerUser, setRegisterUser] = useState({
 		fname: "",
 		lname: "",
@@ -48,9 +47,7 @@ const Register = () => {
 				}}
 				data-aos="fade-in"
 			></aside>
-			<button className="icon register-back" onClick={() => navigate(-1)}>
-				<MaterialIcons>arrow_back</MaterialIcons>
-			</button>
+			<Back />
 			<section className="register-page">
 				<div className="register-container">
 					<h1>Get Started!</h1>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import MaterialIcons from "../MaterialIcons";
+import "./button.css";
 
 const Back = () => {
 	const navigate = useNavigate();

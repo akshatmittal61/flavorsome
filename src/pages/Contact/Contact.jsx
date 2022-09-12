@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Back from "../../components/Button/Back";
 import Button from "../../components/Button/Button";
 import Input, { TextArea } from "../../components/Input/Input";
-import MaterialIcons from "../../components/MaterialIcons";
 import { contactBg } from "../../utils/images";
 import socials from "../../utils/socials";
 import "./contact.css";
 
 const Contact = () => {
-	const navigate = useNavigate();
 	const [userMessage, setUserMessage] = useState({
 		name: "",
 		email: "",
@@ -32,9 +30,7 @@ const Contact = () => {
 	};
 	return (
 		<main className="contact">
-			<button className="icon login-back" onClick={() => navigate(-1)}>
-				<MaterialIcons>arrow_back</MaterialIcons>
-			</button>
+			<Back />
 			<section className="contact-container" data-aos="zoom-in">
 				<div
 					className="contact-left"

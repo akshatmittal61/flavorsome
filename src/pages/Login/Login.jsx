@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
-import MaterialIcons from "../../components/MaterialIcons";
 import { loginBg } from "../../utils/images";
 import "./login.css";
 import "../../components/Button/button.css";
 import Back from "../../components/Button/Back";
 
 const Login = () => {
-	const navigate = useNavigate();
 	const [loginUser, setLoginUser] = useState({
 		username: "",
 		password: "",

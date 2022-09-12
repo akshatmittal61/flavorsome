@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import recipes from "../../utils/recipes";
 import _ from "lodash";
@@ -7,7 +7,14 @@ import Masonry, { MasonryBox } from "../../layout/Masonry/Masonry";
 import RecipeCard from "../../components/Recipe/Recipe";
 
 const Home = () => {
-	const heroRecipe = recipes[0];
+	const [heroRecipe, setHeroRecipe] = useState(recipes[0]);
+	useEffect(() => {
+		let i = 0;
+		setInterval(() => {
+			setHeroRecipe(() => recipes[i % recipes.length]);
+			++i;
+		}, 10000);
+	}, []);
 	return (
 		<main className="home">
 			<section className="home-hero">

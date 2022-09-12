@@ -14,6 +14,7 @@ import "./style.css";
 import NotFound from "./pages/NotFound/NotFound";
 import { allowHeaderFooter } from "./utils";
 import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
 
 const Wrapper = () => {
 	AOS.init();
@@ -25,6 +26,7 @@ const Wrapper = () => {
 			{allowHeaderFooter.includes(location.pathname) && <Header />}
 			<Routes>
 				<Route path="/" element={<Home />} />
+				<Route path="/about" element={<About />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/contact" element={<Contact />} />
