@@ -1,4 +1,3 @@
-import AOS from "aos";
 import React, { useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
@@ -9,6 +8,8 @@ import { useContextData } from "./context/useContext";
 import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./style.css";
 
 const Wrapper = () => {

@@ -48,12 +48,17 @@
             flex-flow: column;
             margin: 3rem 0;
 
+            .col-lg-100 .form-group {
+                width: 95%;
+            }
+
+
             input {
                 margin: 0.25rem 0;
             }
 
             button {
-                margin: 1.25rem 0;
+                margin: 1.25rem;
             }
         }
 

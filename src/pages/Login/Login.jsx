@@ -35,6 +35,7 @@ const Login = () => {
 				style={{
 					backgroundImage: `url(${loginBg})`,
 				}}
+				data-aos="fade-in"
 			></aside>
 			<button className="icon login-back" onClick={() => navigate(-1)}>
 				<MaterialIcons>arrow_back</MaterialIcons>
@@ -62,10 +63,10 @@ const Login = () => {
 						<Button text="Login" type="submit" />
 					</form>
 					<div className="login-signup">
-						<span>
-							Don't have an account?{" "}
+						<div>
+							<span>Don't have an account? </span>
 							<Link to="/register">Sign Up</Link>
-						</span>
+						</div>
 					</div>
 				</div>
 			</section>

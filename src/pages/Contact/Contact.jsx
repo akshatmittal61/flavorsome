@@ -29,7 +29,7 @@ const Contact = () => {
 	};
 	return (
 		<main className="contact">
-			<section className="contact-container">
+			<section className="contact-container" data-aos="zoom-in">
 				<div
 					className="contact-left"
 					style={{

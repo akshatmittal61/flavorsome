@@ -44,11 +44,14 @@
   flex-flow: column;
   margin: 3rem 0;
 }
+.register-container form .col-lg-100 .form-group {
+  width: 95%;
+}
 .register-container form input {
   margin: 0.25rem 0;
 }
 .register-container form button {
-  margin: 1.25rem 0;
+  margin: 1.25rem;
 }
 .register-container a {
   color: var(--indigo);

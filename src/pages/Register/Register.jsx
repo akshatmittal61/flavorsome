@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
+import Row, { Col } from "../../layout/Responsive";
 import { registerBg } from "../../utils/images";
 import "./register.css";
 
@@ -45,37 +46,103 @@ const Register = () => {
 				style={{
 					backgroundImage: `url(${registerBg})`,
 				}}
+				data-aos="fade-in"
 			></aside>
 			<button className="icon register-back" onClick={() => navigate(-1)}>
 				<MaterialIcons>arrow_back</MaterialIcons>
 			</button>
 			<section className="register-page">
 				<div className="register-container">
-					<h1>Welcome!</h1>
+					<h1>Get Started!</h1>
 					<form onSubmit={handleSubmit}>
-						<Input
-							type="text"
-							name="username"
-							value={registerUser.username}
-							onChange={handleChange}
-							placeholder="Username"
-							icon="person"
-						/>
-						<Input
-							type="password"
-							name="password"
-							value={registerUser.password}
-							onChange={handleChange}
-							placeholder="Password"
-							icon="lock"
-						/>
+						<Row>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.fname}
+									name="fname"
+									type="text"
+									placeholder="First Name"
+									icon="person"
+									onChange={handleChange}
+									required
+								/>
+							</Col>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.lname}
+									name="lname"
+									type="text"
+									placeholder="Last Name"
+									icon="person"
+									onChange={handleChange}
+									required
+								/>
+							</Col>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.email}
+									name="email"
+									type="email"
+									placeholder="Email"
+									icon="mail"
+									onChange={handleChange}
+									required
+								/>
+							</Col>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.username}
+									name="username"
+									type="text"
+									placeholder="Username"
+									icon="account_circle"
+									onChange={handleChange}
+									required
+								/>
+							</Col>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.password}
+									name="password"
+									type="password"
+									placeholder="Password"
+									icon="key"
+									onChange={handleChange}
+									required
+								/>
+							</Col>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.confirmPassword}
+									name="confirmPassword"
+									type="password"
+									placeholder="Confirm Password"
+									icon="lock"
+									onChange={handleChange}
+									required
+								/>
+							</Col>
+							<Col lg={100} md={100} sm={100}>
+								<Input
+									value={registerUser.avatar}
+									name="avatar"
+									type="url"
+									placeholder="Avatar"
+									icon="photo_camera"
+									onChange={handleChange}
+									style={{
+										width: "100%",
+									}}
+								/>
+							</Col>
+						</Row>
 						<Button text="Sign Up" type="submit" />
 					</form>
 					<div className="register-signup">
-						<span>
-							Don't have an account?{" "}
-							<Link to="/register">Sign Up</Link>
-						</span>
+						<div>
+							<span>Already have an account? </span>
+							<Link to="/login"> Log In</Link>
+						</div>
 					</div>
 				</div>
 			</section>
