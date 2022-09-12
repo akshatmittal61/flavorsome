@@ -11,6 +11,8 @@ import Register from "./pages/Register/Register";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./style.css";
+import NotFound from "./pages/NotFound/NotFound";
+import { allowHeaderFooter } from "./utils";
 
 const Wrapper = () => {
 	AOS.init();
@@ -19,15 +21,14 @@ const Wrapper = () => {
 	return (
 		<>
 			{breakpoint("mobile") && <Navigation />}
-			{location.pathname !== "/login" &&
-				location.pathname !== "/register" && <Header />}
+			{allowHeaderFooter.includes(location.pathname) && <Header />}
 			<Routes>
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/contact" element={<Contact />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
-			{location.pathname !== "/login" &&
-				location.pathname !== "/register" && <Footer />}
+			{allowHeaderFooter.includes(location.pathname) && <Footer />}
 		</>
 	);
 };
