@@ -1,5 +1,6 @@
 import AOS from "aos";
 import React, { useContext } from "react";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import GlobalContext from "./context/GlobalContext";
@@ -13,6 +14,7 @@ const Wrapper = () => {
 		<>
 			{breakpoint("mobile") && <Navigation />}
 			<Header />
+			<Footer />
 		</>
 	);
 };
