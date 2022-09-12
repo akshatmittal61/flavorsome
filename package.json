@@ -26,7 +26,7 @@
     "start": "node server.mjs",
     "react": "react-scripts start",
     "server": "nodemon server.mjs",
-    "sass": "sass src/style.scss:src/style.css src/components/Button/button.scss:src/components/Button/button.css src/components/Navigation/navigation.scss:src/components/Navigation/navigation.css src/components/Footer/footer.scss:src/components/Footer/footer.css src/components/Header/header.scss:src/components/Header/header.css src/pages/Contact/contact.scss:src/pages/Contact/contact.css -w",
+    "sass": "sass src/style.scss:src/style.css src/components/Button/button.scss:src/components/Button/button.css src/components/Navigation/navigation.scss:src/components/Navigation/navigation.css src/components/Footer/footer.scss:src/components/Footer/footer.css src/components/Input/input.scss:src/components/Input/input.css src/components/Header/header.scss:src/components/Header/header.css src/pages/Contact/contact.scss:src/pages/Contact/contact.css -w",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

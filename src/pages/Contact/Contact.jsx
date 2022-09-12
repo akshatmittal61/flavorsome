@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../components/Button/Button";
+import Input, { TextArea } from "../../components/Input/Input";
 import { contactBg } from "../../utils/images";
 import socials from "../../utils/socials";
 import "./contact.css";
@@ -39,30 +40,34 @@ const Contact = () => {
 					<h1>Contact Us</h1>
 					<h2>Get In Touch</h2>
 					<form onSubmit={handleSubmit}>
-						<input
+						<Input
 							type="text"
 							name="name"
+							icon="person"
 							value={userMessage.name}
 							placeholder="Your Name Here"
 							onChange={handleChange}
 						/>
-						<input
+						<Input
 							type="email"
 							name="email"
+							icon="mail"
 							value={userMessage.email}
 							placeholder="Your E-Mail Here"
 							onChange={handleChange}
 						/>
-						<textarea
+						<TextArea
 							type="text"
 							name="message"
+							icon="chat"
+							rows={5}
 							value={userMessage.message}
 							placeholder="Type Your Message Here"
 							onChange={handleChange}
-						></textarea>
+						/>
 						<Button
 							text="Send Message"
-							color="white"
+							color="indigo"
 							variant="outline"
 							size="small"
 						/>
