@@ -277,33 +277,6 @@ button {
     font: inherit;
 }
 
-input,
-textarea,
-select {
-
-    &,
-    &:hover,
-    &:active,
-    &:focus {
-        background: transparent;
-        font: inherit;
-        border: none;
-        outline: none;
-        resize: none;
-    }
-
-    &::placeholder {
-        user-select: none;
-        font-size: 0.875rem;
-        color: var(--gray-700);
-    }
-
-    &:-webkit-autofill {
-        background-color: rgba(0, 0, 0, 0.01);
-        box-shadow: inset;
-    }
-}
-
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;

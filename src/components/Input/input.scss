@@ -1,3 +1,30 @@
+input,
+textarea,
+select {
+
+	&,
+	&:hover,
+	&:active,
+	&:focus {
+		background: transparent;
+		font: inherit;
+		border: none;
+		outline: none;
+		resize: none;
+	}
+
+	&::placeholder {
+		user-select: none;
+		font-size: 0.875rem;
+		color: var(--gray-700);
+	}
+
+	&:-webkit-autofill {
+		background-color: rgba(0, 0, 0, 0.01);
+		box-shadow: inset;
+	}
+}
+
 .form-group {
 	width: 90%;
 	display: flex;
@@ -55,8 +82,4 @@ select {
 
 textarea+label {
 	color: var(--red-700);
-}
-
-button {
-	width: 40%;
 }

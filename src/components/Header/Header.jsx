@@ -56,6 +56,7 @@ const Header = () => {
 					color="black"
 					size="small"
 					variant="outline"
+					link="/login"
 				/>
 			</div>
 		</header>

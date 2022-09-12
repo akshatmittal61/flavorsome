@@ -1,3 +1,32 @@
+input, input:hover, input:active, input:focus,
+textarea,
+textarea:hover,
+textarea:active,
+textarea:focus,
+select,
+select:hover,
+select:active,
+select:focus {
+  background: transparent;
+  font: inherit;
+  border: none;
+  outline: none;
+  resize: none;
+}
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  user-select: none;
+  font-size: 0.875rem;
+  color: var(--gray-700);
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: rgba(0, 0, 0, 0.01);
+  box-shadow: inset;
+}
+
 .form-group {
   width: 90%;
   display: flex;
@@ -62,10 +91,6 @@ select:disabled:focus {
 
 textarea + label {
   color: var(--red-700);
-}
-
-button {
-  width: 40%;
 }
 
 /*# sourceMappingURL=input.css.map */

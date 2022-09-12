@@ -75,3 +75,22 @@ button {
         }
     }
 }
+
+.icon {
+	width: 2.5rem;
+	height: 2.5rem;
+	padding: 1rem;
+	border-radius: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--tcolor);
+
+	.material-symbols-outlined {
+		font-size: 1.5rem;
+	}
+
+	&:hover {
+		background-color: var(--back-shadow-light);
+	}
+}

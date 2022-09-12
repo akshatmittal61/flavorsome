@@ -12,14 +12,14 @@ const Contact = () => {
 		message: "",
 	});
 	const handleChange = (e) => {
-		const { name, value } = e.target;
+		const { name, value } = e?.target;
 		setUserMessage((p) => ({
 			...p,
 			[name]: value,
 		}));
 	};
 	const handleSubmit = (e) => {
-		e.preventDefault();
+		e?.preventDefault();
 		console.log(userMessage);
 		setUserMessage({
 			name: "",
@@ -70,6 +70,7 @@ const Contact = () => {
 							color="indigo"
 							variant="outline"
 							size="small"
+							type="submit"
 						/>
 					</form>
 					<h2>Follow Us</h2>

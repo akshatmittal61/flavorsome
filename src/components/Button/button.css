@@ -137,4 +137,21 @@ button {
   color: var(--black);
 }
 
+.icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 1rem;
+  border-radius: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--tcolor);
+}
+.icon .material-symbols-outlined {
+  font-size: 1.5rem;
+}
+.icon:hover {
+  background-color: var(--back-shadow-light);
+}
+
 /*# sourceMappingURL=button.css.map */
