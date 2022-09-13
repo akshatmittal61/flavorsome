@@ -26,12 +26,13 @@ const Footer = () => {
 				</div>
 				<div className="footer-mid-mid">
 					<div className="footer-mid-mid-socials">
-						{socials.map((social) => (
+						{socials.map((social, id) => (
 							<a
 								href={social.link}
 								target="_blank"
 								rel="noreferrer"
 								title={social.linkText}
+								key={id}
 							>
 								{social.icon}
 							</a>

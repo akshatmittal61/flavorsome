@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { ArrowLeftCircle } from "react-feather";
+import ReactMarkdown from "react-markdown";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import recipes from "../../utils/recipes";
 import "./recipe.css";
@@ -64,7 +65,9 @@ const Recipe = () => {
 								))}
 							</ul>
 						</span>
-						<div className="recipe-content">{recipe.content}</div>
+						<div className="recipe-content">
+							<ReactMarkdown>{recipe.content}</ReactMarkdown>
+						</div>
 					</div>
 				</section>
 			</div>

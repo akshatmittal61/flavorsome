@@ -4,15 +4,18 @@ import recipes from "../../utils/recipes";
 import "./home.css";
 import Masonry, { MasonryBox } from "../../layout/Masonry/Masonry";
 import { RecipeCard } from "../../components/Recipe/Recipe";
+import { randomize } from "../../utils";
 
 const Home = () => {
-	const [heroRecipe, setHeroRecipe] = useState(recipes[0]);
+	const [heroRecipe, setHeroRecipe] = useState(
+		recipes[randomize(0, recipes.length)]
+	);
 	useEffect(() => {
 		let i = 0;
 		setInterval(() => {
 			setHeroRecipe(() => recipes[i % recipes.length]);
-			++i;
-		}, 10000);
+			i = randomize(0, recipes.length);
+		}, 5000);
 	}, []);
 	return (
 		<main className="home">

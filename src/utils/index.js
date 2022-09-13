@@ -9,4 +9,6 @@ const allowFooter = (route) => {
 	if (route.slice(0, 8) === "/recipe/") return true;
 };
 
-export { allowHeader, allowFooter };
+const randomize = (low, high) => Math.floor(Math.random() * +high + +low);
+
+export { allowHeader, allowFooter, randomize };
