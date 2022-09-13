@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import recipes from "../../utils/recipes";
-import _ from "lodash";
 import "./home.css";
 import Masonry, { MasonryBox } from "../../layout/Masonry/Masonry";
-import RecipeCard from "../../components/Recipe/Recipe";
+import { RecipeCard } from "../../components/Recipe/Recipe";
 
 const Home = () => {
 	const [heroRecipe, setHeroRecipe] = useState(recipes[0]);
@@ -25,7 +24,7 @@ const Home = () => {
 					}}
 				>
 					<div className="home-hero-details">
-						<Link to={`/recipe/${_.kebabCase(heroRecipe.title)}`}>
+						<Link to={`/recipe/${heroRecipe.id}`}>
 							<h1>{heroRecipe.title}</h1>
 						</Link>
 						<p>

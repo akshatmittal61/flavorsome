@@ -12,7 +12,7 @@
 :root,
 :root::before,
 :root::after {
-  --bgcolor: #f9f9f9;
+  --bgcolor: #f0f0f0;
   --bgcolor-100: #e1e1e1;
   --bgcolor-400: #d2d2d2;
   --bgcolor-700: #c3c3c3;
@@ -437,6 +437,11 @@ body,
   overflow-x: hidden;
   position: relative;
   transition: all 0.05s ease-in-out;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: darken;
 }
 
 #root {
