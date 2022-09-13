@@ -34,7 +34,7 @@ const Header = () => {
 						})}
 					</ul>
 				</nav>
-				<h1>Meal Time</h1>
+				<h1>FlavorSome</h1>
 				<nav>
 					<ul>
 						{navLinks.map((nav, id) => {

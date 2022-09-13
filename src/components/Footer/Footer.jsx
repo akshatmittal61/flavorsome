@@ -10,7 +10,7 @@ const Footer = () => {
 		<footer className="footer">
 			<section className="footer-top">
 				<span className="footer-top-first"></span>
-				<div className="footer-top-mid">Meal Time</div>
+				<div className="footer-top-mid">FlavorSome</div>
 				<span className="footer-top-last"></span>
 			</section>
 			<section className="footer-mid">

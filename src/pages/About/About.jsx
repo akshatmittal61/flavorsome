@@ -7,11 +7,11 @@ const About = () => {
 	return (
 		<main className="about">
 			<section className="about-image">
-				<img src={favicon} alt="Meal Time" data-aos="zoom-in" />
+				<img src={favicon} alt="FlavorSome" data-aos="zoom-in" />
 			</section>
 			<section className="about-content">
 				<span>About Us</span>
-				<h1>Meal Time</h1>
+				<h1>FlavorSome</h1>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
 					do eiusmod tempor incididunt ut labore et dolore magna
