@@ -23,4 +23,29 @@ const getRecipe = async (req, res) => {
 	}
 };
 
-export { getAllRecipes, getRecipe };
+const addRecipe = async (req, res) => {
+	const { title, image, date, about, ingredients, content } = req.body;
+	if (!title || !about || !ingredients || !content)
+		return res.status(400).json({ message: "Invalid Data" });
+	console.log(req);
+	try {
+		const newRecipe = new Recipe({
+			user: req.user.id,
+			title,
+			image,
+			date,
+			about,
+			ingredients,
+			content,
+		});
+		const recipe = await newRecipe.save();
+		return res
+			.status(200)
+			.json({ newRecipe: recipe, message: "Added Recipe successfully" });
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
+export { getAllRecipes, getRecipe, addRecipe };

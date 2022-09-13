@@ -22,6 +22,7 @@ const RecipeSchema = new mongoose.Schema(
 		about: {
 			type: String,
 			required: true,
+			default: `Never miss out on any new food and dishes idea. Share your own reciepies and read others' with FlavorSome.`,
 		},
 		ingredients: {
 			type: [String],
