@@ -1,0 +1,42 @@
+.search {
+    &-head {
+        margin: 1rem;
+        text-align: center;
+
+        h1 {
+            font-size: 3rem;
+            line-height: 3.5rem;
+            font-weight: 300;
+        }
+    }
+
+    &-input {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+
+        form {
+            width: 60%;
+            margin: 1rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+        }
+    }
+
+    &-body {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-flow: column;
+
+        img {
+            width: 20rem;
+            height: auto;
+        }
+    }
+}

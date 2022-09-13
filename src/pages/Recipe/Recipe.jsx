@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ArrowLeftCircle } from "react-feather";
+import { ArrowLeftCircle, Bookmark } from "react-feather";
 import ReactMarkdown from "react-markdown";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import recipes from "../../utils/recipes";
@@ -26,6 +26,9 @@ const Recipe = () => {
 					onClick={() => navigate(-1)}
 				>
 					<ArrowLeftCircle /> Go Back
+				</button>
+				<button className="main-cover-save">
+					<Bookmark />
 				</button>
 			</div>
 			<div className="main-container" data-aos="fade-up">

@@ -1,0 +1,37 @@
+.search-head {
+  margin: 1rem;
+  text-align: center;
+}
+.search-head h1 {
+  font-size: 3rem;
+  line-height: 3.5rem;
+  font-weight: 300;
+}
+.search-input {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.search-input form {
+  width: 60%;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+.search-body {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: column;
+}
+.search-body img {
+  width: 20rem;
+  height: auto;
+}
+
+/*# sourceMappingURL=search.css.map */
