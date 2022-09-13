@@ -4,6 +4,7 @@ import { config } from "dotenv";
 import { PORT } from "./config/index.mjs";
 import connect from "./db/index.mjs";
 import apiAuth from "./routes/auth.mjs";
+import apiRecipes from "./routes/recipe.mjs";
 
 config();
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/auth", apiAuth);
+app.use("/api/recipes", apiRecipes);
 
 app.listen(PORT, () => {
 	connect();
