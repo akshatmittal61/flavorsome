@@ -75,6 +75,16 @@ const login = async (req, res) => {
 	}
 };
 
+const verifyUser = async (req, res) => {
+	try {
+		const user = await User.findById(req.user.id).select("-password");
+		return res.json({ user: user, message: "User Verified" });
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const editProfile = async (req, res) => {
 	const id = req.user.id;
 	try {
@@ -109,4 +119,4 @@ const editProfile = async (req, res) => {
 	}
 };
 
-export { register, login, editProfile };
+export { register, login, verifyUser, editProfile };
