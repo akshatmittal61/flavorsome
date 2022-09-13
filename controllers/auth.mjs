@@ -2,6 +2,7 @@ import User from "../models/User.mjs";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { jwtSecret } from "../config/index.mjs";
+import { omit } from "../helpers/index.mjs";
 
 const register = async (req, res) => {
 	const { fname, lname, email, username, password, avatar } = req.body;
@@ -64,7 +65,7 @@ const login = async (req, res) => {
 			if (err) throw err;
 			res.status(200).json({
 				token,
-				user: user,
+				user: omit(user, "password"),
 				message: "Login successful",
 			});
 		});
