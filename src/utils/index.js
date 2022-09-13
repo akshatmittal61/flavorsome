@@ -1,5 +1,5 @@
 const allowHeaderRoutes = ["/", "/about", "/search"];
-const allowFooterRoutes = ["/", "/about", "/search", "/recipe/:id"];
+const allowFooterRoutes = ["/", "/about", "/search", "/recipe/:id", "/profile"];
 
 const allowHeader = (route) => {
 	if (allowHeaderRoutes.includes(route)) return true;
