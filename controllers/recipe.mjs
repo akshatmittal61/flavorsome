@@ -25,7 +25,11 @@ const getRecipe = async (req, res) => {
 		const foundRecipe = await Recipe.findById(id);
 		if (!foundRecipe)
 			return res.status(404).json({ message: "Recipe not found" });
-		return res.status(200).json(foundRecipe);
+		const recipeUserObj = await getUser(foundRecipe.user);
+		console.log({ ...omit(foundRecipe, "user"), user: recipeUserObj });
+		return res
+			.status(200)
+			.json({ ...omit(foundRecipe, "user"), user: recipeUserObj });
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: "Server Error" });

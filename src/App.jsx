@@ -25,7 +25,6 @@ const Wrapper = () => {
 	const location = useLocation();
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		console.log(process.env.REACT_APP_BACKEND_URL);
 		getAllRecipes();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location.pathname]);

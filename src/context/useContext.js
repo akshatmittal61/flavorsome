@@ -55,6 +55,24 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const getSingleRecipe = async (id) => {
+		try {
+			const res = await axiosInstance.get(`/api/recipe/${id}`);
+			console.log(res.data);
+			return res.data;
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Theme: light || dark
 	const [theme, setTheme] = useState(
@@ -98,5 +116,6 @@ export const useContextData = () => {
 		recipes,
 		setRecipes,
 		getAllRecipes,
+		getSingleRecipe,
 	};
 };
