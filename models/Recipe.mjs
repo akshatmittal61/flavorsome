@@ -16,8 +16,9 @@ const RecipeSchema = new mongoose.Schema(
 				"https://st2.depositphotos.com/3740491/8238/v/950/depositphotos_82387026-stock-illustration-outline-seamless-pattern-with-hand.jpg",
 		},
 		date: {
-			type: Date,
+			type: String,
 			required: false,
+			default: Date().slice(4, 15),
 		},
 		about: {
 			type: String,

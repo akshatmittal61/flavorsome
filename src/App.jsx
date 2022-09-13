@@ -21,10 +21,13 @@ import Profile from "./pages/Profile/Profile";
 
 const Wrapper = () => {
 	AOS.init();
-	const { breakpoint } = useContext(GlobalContext);
+	const { breakpoint, getAllRecipes } = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		console.log(process.env.REACT_APP_BACKEND_URL);
+		getAllRecipes();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location.pathname]);
 
 	return (

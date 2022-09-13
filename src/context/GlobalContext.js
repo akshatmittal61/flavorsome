@@ -16,6 +16,9 @@ const GlobalContext = createContext({
 	user: undefined,
 	setUser: () => {},
 	axiosInstance: undefined,
+	recipes: [],
+	setRecipes: () => {},
+	getAllRecipes: () => {},
 });
 
 export default GlobalContext;

@@ -24,11 +24,12 @@ const getRecipe = async (req, res) => {
 };
 
 const addRecipe = async (req, res) => {
-	const { title, image, date, about, ingredients, content } = req.body;
+	let { title, image, about, ingredients, content } = req.body;
 	if (!title || !about || !ingredients || !content)
 		return res.status(400).json({ message: "Invalid Data" });
 	console.log(req);
 	try {
+		let date = Date().slice(4, 15);
 		const newRecipe = new Recipe({
 			user: req.user.id,
 			title,

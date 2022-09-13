@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { default as defaultRecipes } from "../utils/recipes";
 
 export const useContextData = () => {
 	// Axios Instance Configurations
@@ -32,6 +33,28 @@ export const useContextData = () => {
 	const [user, setUser] = useState(
 		JSON.parse(localStorage.getItem("user")) || null
 	);
+
+	// Recipes state
+	const [recipes, setRecipes] = useState(defaultRecipes);
+	const getAllRecipes = async () => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get("/api/recipe");
+			setRecipes(() => [...defaultRecipes, ...res.data.allRecipes]);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Theme: light || dark
 	const [theme, setTheme] = useState(
@@ -72,5 +95,8 @@ export const useContextData = () => {
 		user,
 		setUser,
 		axiosInstance,
+		recipes,
+		setRecipes,
+		getAllRecipes,
 	};
 };
