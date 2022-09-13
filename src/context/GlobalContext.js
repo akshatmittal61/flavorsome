@@ -5,6 +5,17 @@ const GlobalContext = createContext({
 	setTheme: () => {},
 	toggleTheme: () => {},
 	breakpoint: () => {},
+	isLoading: "",
+	setIsLoading: () => {},
+	snack: {},
+	setSnack: () => {},
+	openSnackBar: false,
+	setOpenSnackBar: () => {},
+	isAuthenticated: "",
+	setIsAuthenticated: () => {},
+	user: undefined,
+	setUser: () => {},
+	axiosInstance: undefined,
 });
 
 export default GlobalContext;

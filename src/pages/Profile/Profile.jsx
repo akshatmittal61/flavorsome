@@ -50,8 +50,8 @@ const Profile = () => {
 					className="main-cover-save"
 					onClick={(e) => {
 						e.preventDefault();
-						if (edit) handleSubmit();
 						setEdit((p) => !p);
+						if (edit) handleSubmit();
 					}}
 				>
 					{edit ? <Save /> : <Edit />}

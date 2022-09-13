@@ -24,6 +24,8 @@
   justify-content: space-between;
   align-items: flex-start;
   position: absolute;
+  background-image: url(https://www.transparenttextures.com/patterns/inspiration-geometry.png);
+  background-attachment: fixed;
 }
 .profile-head button {
   width: fit-content;
