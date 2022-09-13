@@ -1,4 +1,4 @@
-import { Coffee, Home, Info, Phone, Search, User } from "react-feather";
+import { Edit, Home, Info, Phone, Search, User } from "react-feather";
 
 const navLinks = [
 	{
@@ -17,9 +17,9 @@ const navLinks = [
 		icon: <Search />,
 	},
 	{
-		title: "Recipes",
-		route: "/recipes",
-		icon: <Coffee />,
+		title: "Write",
+		route: "/write",
+		icon: <Edit />,
 	},
 	{
 		title: "Profile",

@@ -1,9 +1,18 @@
+import { omit } from "../helpers/index.mjs";
 import Recipe from "../models/Recipe.mjs";
+import { getUser } from "./auth.mjs";
 
 const getAllRecipes = async (req, res) => {
 	try {
-		const allRecipes = await Recipe.find({});
-		return res.status(200).json({ allRecipes: allRecipes });
+		let allRecipes = await Recipe.find({});
+		let recipesToSend = [];
+		if (!allRecipes)
+			return res.status(404).json({ message: "No Recipes found" });
+		for (const recipe of allRecipes) {
+			const res = await getUser(recipe.user);
+			recipesToSend.push({ ...omit(recipe, "user"), user: res });
+		}
+		return res.status(200).json({ allRecipes: recipesToSend });
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: "Server Error" });

@@ -50,8 +50,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.home-hero-user__image img {
   border-radius: 500px;
-  overflow: hidden;
 }
 .home-hero-user__details {
   height: 85%;
