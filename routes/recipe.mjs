@@ -3,6 +3,7 @@ import {
 	addRecipe,
 	editRecipe,
 	getAllRecipes,
+	getAllRecipesByUsername,
 	getRecipe,
 } from "../controllers/recipe.mjs";
 import auth from "../middleware/auth.mjs";
@@ -13,5 +14,6 @@ router.get("/", getAllRecipes);
 router.get("/:id", getRecipe);
 router.post("/add", auth, addRecipe);
 router.put("/edit/:id", auth, editRecipe);
+router.get("/:username/recipes", getAllRecipesByUsername);
 
 export default router;

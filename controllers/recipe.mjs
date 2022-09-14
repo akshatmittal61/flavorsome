@@ -1,5 +1,6 @@
 import { omit } from "../helpers/index.mjs";
 import Recipe from "../models/Recipe.mjs";
+import User from "../models/User.mjs";
 import { getUser } from "./auth.mjs";
 
 const getAllRecipes = async (req, res) => {
@@ -86,4 +87,25 @@ const editRecipe = async (req, res) => {
 	}
 };
 
-export { getAllRecipes, getRecipe, addRecipe, editRecipe };
+const getAllRecipesByUsername = async (req, res) => {
+	const { username } = req.params;
+	console.log(username);
+	try {
+		const foundUser = await User.findOne({ username });
+		if (!foundUser)
+			return res.status(400).json({ message: "No User found" });
+		const allRecipes = await Recipe.find({ user: foundUser._id });
+		return res.status(200).json({ allRecipes: allRecipes });
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
+export {
+	getAllRecipes,
+	getRecipe,
+	addRecipe,
+	editRecipe,
+	getAllRecipesByUsername,
+};
