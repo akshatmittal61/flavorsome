@@ -18,6 +18,7 @@ import About from "./pages/About/About";
 import Recipe from "./pages/Recipe/Recipe";
 import Search from "./pages/Search/Search";
 import Profile from "./pages/Profile/Profile";
+import Write from "./pages/Write/Write";
 
 const Wrapper = () => {
 	AOS.init();
@@ -36,6 +37,7 @@ const Wrapper = () => {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/about" element={<About />} />
+				<Route path="/write" element={<Write />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/search" element={<Search />} />
 				<Route path="/recipe/:id" element={<Recipe />} />
