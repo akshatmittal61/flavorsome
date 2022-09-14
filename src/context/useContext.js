@@ -138,6 +138,43 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const updateOneRecipe = async (id, updatedRecipe) => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/recipe/edit/${id}`, {
+				...updatedRecipe,
+			});
+			setRecipes((prevRecipes) => {
+				let newRecipes = prevRecipes.map((singleRecipe) =>
+					singleRecipe._id !== id
+						? singleRecipe
+						: resp.data.updatedRecipe
+				);
+				return newRecipes;
+			});
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Theme: light || dark
 	const [theme, setTheme] = useState(
@@ -184,6 +221,7 @@ export const useContextData = () => {
 		getAllRecipes,
 		getSingleRecipe,
 		addNewRecipe,
+		updateOneRecipe,
 		getUserProfile,
 	};
 };

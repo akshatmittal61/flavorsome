@@ -26,7 +26,6 @@ const getRecipe = async (req, res) => {
 		if (!foundRecipe)
 			return res.status(404).json({ message: "Recipe not found" });
 		const recipeUserObj = await getUser(foundRecipe.user);
-		console.log({ ...omit(foundRecipe, "user"), user: recipeUserObj });
 		return res
 			.status(200)
 			.json({ ...omit(foundRecipe, "user"), user: recipeUserObj });
@@ -40,7 +39,6 @@ const addRecipe = async (req, res) => {
 	let { title, image, about, ingredients, content } = req.body;
 	if (!title || !about || !ingredients || !content)
 		return res.status(400).json({ message: "Invalid Data" });
-	console.log(req);
 	try {
 		let date = Date().slice(4, 15);
 		const newRecipe = new Recipe({
@@ -57,7 +55,7 @@ const addRecipe = async (req, res) => {
 			.status(200)
 			.json({ newRecipe: recipe, message: "Added Recipe successfully" });
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		return res.status(500).json({ message: "Server Error" });
 	}
 };

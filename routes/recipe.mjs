@@ -12,6 +12,6 @@ const router = Router();
 router.get("/", getAllRecipes);
 router.get("/:id", getRecipe);
 router.post("/add", auth, addRecipe);
-router.put("/edit/:id", editRecipe);
+router.put("/edit/:id", auth, editRecipe);
 
 export default router;

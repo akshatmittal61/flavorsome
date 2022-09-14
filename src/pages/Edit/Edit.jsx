@@ -15,7 +15,9 @@ const Edit = () => {
 		content: "",
 	});
 	const { id } = useParams();
-	const { getSingleRecipe } = useContext(GlobalContext);
+	const [originalRecipe, setOriginalRecipe] = useState({});
+	const { user, getSingleRecipe, updateOneRecipe } =
+		useContext(GlobalContext);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setRecipeToEdit((p) => ({
@@ -27,6 +29,12 @@ const Edit = () => {
 		e?.preventDefault();
 		let recipesToSend = { ...recipeToEdit };
 		recipesToSend.ingredients = recipeToEdit.ingredients.split(",");
+		let editedRecipe = { username: user.username };
+		for (let i in recipeToEdit) {
+			if (recipeToEdit[i] !== originalRecipe[i])
+				editedRecipe = { ...editedRecipe, [i]: recipeToEdit[i] };
+		}
+		updateOneRecipe(originalRecipe?._id, editedRecipe);
 	};
 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,15 +45,24 @@ const Edit = () => {
 			...fetchedRecipe,
 			ingredients: ing,
 		});
+		setOriginalRecipe({
+			...fetchedRecipe,
+			ingredients: ing,
+		});
 	};
 	useEffect(() => {
 		fetchRecipe();
-	}, [fetchRecipe, getSingleRecipe, id]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<main className="write">
 			<section className="write-head">
 				<h1>{recipeToEdit.title}</h1>
-				<Button text="Update Recipe" icon="save" />
+				<Button
+					text="Update Recipe"
+					icon="save"
+					onClick={handleSubmit}
+				/>
 			</section>
 			<form onSubmit={handleSubmit}>
 				<Input

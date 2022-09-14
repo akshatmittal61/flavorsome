@@ -22,6 +22,7 @@ const GlobalContext = createContext({
 	getAllRecipes: () => {},
 	getSingleRecipe: () => {},
 	addNewRecipe: () => {},
+	updateOneRecipe: () => {},
 	getUserProfile: () => {},
 });
 
