@@ -4,6 +4,7 @@ import Button from "../../components/Button/Button";
 import Input, { TextArea } from "../../components/Input/Input";
 import { contactBg } from "../../utils/images";
 import socials from "../../utils/socials";
+import emailjs from "emailjs-com";
 import "./contact.css";
 
 const Contact = () => {
@@ -21,7 +22,15 @@ const Contact = () => {
 	};
 	const handleSubmit = (e) => {
 		e?.preventDefault();
-		console.log(userMessage);
+		emailjs
+			.sendForm(
+				process.env.REACT_APP_SERVICE,
+				process.env.REACT_APP_TEMPLATE,
+				e.target,
+				process.env.REACT_APP_USER
+			)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
 		setUserMessage({
 			name: "",
 			email: "",
