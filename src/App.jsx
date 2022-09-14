@@ -23,6 +23,7 @@ import UserProfile from "./pages/UserProfile/UserProfile";
 import SnackBar from "./components/SnackBar/SnackBar";
 import PrivateRoute from "./components/PrivateRoute";
 import Logout from "./pages/Logout";
+import Edit from "./pages/Edit/Edit";
 
 const Wrapper = () => {
 	AOS.init();
@@ -51,6 +52,14 @@ const Wrapper = () => {
 					}
 				/>
 				<Route path="/users/:username" element={<UserProfile />} />
+				<Route
+					path="/edit/:id"
+					element={
+						<PrivateRoute>
+							<Edit />
+						</PrivateRoute>
+					}
+				/>
 				<Route
 					path="/profile"
 					element={

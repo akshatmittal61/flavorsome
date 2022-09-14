@@ -3,17 +3,18 @@ export const allowFooterRoutes = [
 	"/",
 	"/about",
 	"/search",
-	"/recipe/:id",
 	"/profile",
 	"/write",
 ];
 
 export const allowHeader = (route) => {
 	if (allowHeaderRoutes.includes(route)) return true;
+	if (route.slice(0, 6) === "/edit/") return true;
 };
 export const allowFooter = (route) => {
 	if (allowFooterRoutes.includes(route)) return true;
 	if (route.slice(0, 8) === "/recipe/") return true;
+	if (route.slice(0, 6) === "/edit/") return true;
 };
 
 export const randomize = (low, high) =>

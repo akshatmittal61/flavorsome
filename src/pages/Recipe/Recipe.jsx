@@ -44,7 +44,10 @@ const Recipe = () => {
 				</div>
 				<div className="main-cover-right">
 					{recipe?.user?.username === user?.username && (
-						<button className="main-cover-edit">
+						<button
+							className="main-cover-edit"
+							onClick={() => navigate(`/edit/${id}`)}
+						>
 							<Edit />
 						</button>
 					)}
