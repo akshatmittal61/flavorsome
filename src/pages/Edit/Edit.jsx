@@ -5,19 +5,24 @@ import remarkGfm from "remark-gfm";
 import Button from "../../components/Button/Button";
 import Input, { TextArea } from "../../components/Input/Input";
 import GlobalContext from "../../context/GlobalContext";
+import { accessDenied } from "../../utils/images";
+import "../Write/write.css";
 
 const Edit = () => {
+	const { user, getSingleRecipe, updateOneRecipe } =
+		useContext(GlobalContext);
 	const [recipeToEdit, setRecipeToEdit] = useState({
 		title: "",
 		image: "",
 		about: "",
 		ingredients: "",
 		content: "",
+		user: {
+			...user,
+		},
 	});
 	const { id } = useParams();
 	const [originalRecipe, setOriginalRecipe] = useState({});
-	const { user, getSingleRecipe, updateOneRecipe } =
-		useContext(GlobalContext);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setRecipeToEdit((p) => ({
@@ -56,72 +61,92 @@ const Edit = () => {
 	}, []);
 	return (
 		<main className="write">
-			<section className="write-head">
-				<h1>{recipeToEdit.title}</h1>
-				<Button
-					text="Update Recipe"
-					icon="save"
-					onClick={handleSubmit}
-				/>
-			</section>
-			<form onSubmit={handleSubmit}>
-				<Input
-					type="text"
-					placeholder="Title text"
-					icon="title"
-					name="title"
-					value={recipeToEdit.title}
-					onChange={handleChange}
-					required
-				/>
-				<Input
-					type="text"
-					placeholder="Short Description"
-					icon="info"
-					name="about"
-					value={recipeToEdit.about}
-					onChange={handleChange}
-					required
-				/>
-				<Input
-					type="url"
-					placeholder="Cover Image URL"
-					icon="image"
-					name="image"
-					value={recipeToEdit.image}
-					onChange={handleChange}
-					required
-				/>
-				<Input
-					type="text"
-					placeholder="Ingredients (seperate by comma)"
-					icon="soup_kitchen"
-					name="ingredients"
-					value={recipeToEdit.ingredients}
-					onChange={handleChange}
-					required
-				/>
-				<div className="form-flex">
-					<TextArea
-						type="text"
-						placeholder="Recipe Content (markdown supported)"
-						icon="restaurant_menu"
-						name="content"
-						value={recipeToEdit.content}
-						onChange={handleChange}
-						required
-					/>
-					<div className="form-md">
-						<ReactMarkdown remarkPlugins={[remarkGfm]}>
-							{recipeToEdit.content}
-						</ReactMarkdown>
-					</div>
-				</div>
-				<div className="form-group">
-					<Button text="Cancel" type="reset" variant="outline" />
-					<Button text="Update Recipe" type="submit" />
-				</div>
-			</form>
+			{recipeToEdit.user.username === user.username ? (
+				<>
+					<section className="write-head">
+						<h1>{recipeToEdit.title}</h1>
+						<Button
+							text="Update Recipe"
+							icon="save"
+							onClick={handleSubmit}
+						/>
+					</section>
+					<form onSubmit={handleSubmit}>
+						<Input
+							type="text"
+							placeholder="Title text"
+							icon="title"
+							name="title"
+							value={recipeToEdit.title}
+							onChange={handleChange}
+							required
+						/>
+						<Input
+							type="text"
+							placeholder="Short Description"
+							icon="info"
+							name="about"
+							value={recipeToEdit.about}
+							onChange={handleChange}
+							required
+						/>
+						<Input
+							type="url"
+							placeholder="Cover Image URL"
+							icon="image"
+							name="image"
+							value={recipeToEdit.image}
+							onChange={handleChange}
+							required
+						/>
+						<Input
+							type="text"
+							placeholder="Ingredients (seperate by comma)"
+							icon="soup_kitchen"
+							name="ingredients"
+							value={recipeToEdit.ingredients}
+							onChange={handleChange}
+							required
+						/>
+						<div className="form-flex">
+							<TextArea
+								type="text"
+								placeholder="Recipe Content (markdown supported)"
+								icon="restaurant_menu"
+								name="content"
+								value={recipeToEdit.content}
+								onChange={handleChange}
+								required
+							/>
+							<div className="form-md">
+								<ReactMarkdown remarkPlugins={[remarkGfm]}>
+									{recipeToEdit.content}
+								</ReactMarkdown>
+							</div>
+						</div>
+						<div className="form-group">
+							<Button
+								text="Cancel"
+								type="reset"
+								variant="outline"
+							/>
+							<Button text="Update Recipe" type="submit" />
+						</div>
+					</form>
+				</>
+			) : (
+				<>
+					<section className="write-null">
+						<div className="write-null-image">
+							<img src={accessDenied} alt="No User Found" />
+						</div>
+						<h2>Access Denied</h2>
+						<h4>
+							You can't edit the recipe "{recipeToEdit.title}"
+						</h4>
+					</section>
+				</>
+			)}
 		</main>
 	);
 };
