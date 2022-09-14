@@ -3,7 +3,9 @@ import { ArrowLeftCircle } from "react-feather";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import RecipeFlex from "../../components/Recipe/RecipeFlex";
 import GlobalContext from "../../context/GlobalContext";
+import Masonry, { MasonryBox } from "../../layout/Masonry/Masonry";
 import Row, { Col } from "../../layout/Responsive";
 import { searchEmpty } from "../../utils/images";
 import "../Profile/profile.css";
@@ -12,17 +14,25 @@ const UserProfile = () => {
 	const { username } = useParams();
 	const navigate = useNavigate();
 	const [profileUser, setProfileUser] = useState({});
+	const [userRecipes, setUserRecipes] = useState([]);
 	const [userFound, setUserFound] = useState(false);
-	const { getUserProfile } = useContext(GlobalContext);
+	const { getUserProfile, getAllRecipesByUsername } =
+		useContext(GlobalContext);
 	useEffect(() => {
 		const fetUserProfile = async () => {
 			const res = await getUserProfile(username);
 			setUserFound(() => (res ? true : false));
 			setProfileUser(() => ({ ...res }));
 		};
+		const getAllRecipes = async () => {
+			const res = await getAllRecipesByUsername(username);
+			setUserRecipes(() => res);
+		};
 		fetUserProfile();
+		getAllRecipes();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
 	return (
 		<main className="profile">
 			<section className="profile-head">
@@ -34,6 +44,7 @@ const UserProfile = () => {
 				</button>
 				<button className="main-cover-save dispn"></button>
 			</section>
+			<div style={{ height: "20vh" }}></div>
 			{userFound ? (
 				<section className="profile-container">
 					<div className="profile-image">
@@ -124,6 +135,18 @@ const UserProfile = () => {
 					<h2>Could not find a profile for user "{username}"</h2>
 				</section>
 			)}
+			<section className="profile-recipes">
+				<h1>
+					Recipes by {profileUser.fname} {profileUser.lname}
+				</h1>
+				<Masonry lg={2} md={2} sm={1}>
+					{userRecipes.map((res, id) => (
+						<MasonryBox key={id}>
+							<RecipeFlex {...res} />
+						</MasonryBox>
+					))}
+				</Masonry>
+			</section>
 		</main>
 	);
 };
