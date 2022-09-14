@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Button from "../../components/Button/Button";
 import Input, { TextArea } from "../../components/Input/Input";
+import GlobalContext from "../../context/GlobalContext";
 import "./write.css";
 
 const Write = () => {
@@ -12,6 +14,7 @@ const Write = () => {
 		ingredients: "",
 		content: "",
 	});
+	const { addNewRecipe } = useContext(GlobalContext);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setNewRecipe((p) => ({
@@ -33,6 +36,7 @@ const Write = () => {
 		e?.preventDefault();
 		let recipesToSend = { ...newRecipe };
 		recipesToSend.ingredients = newRecipe.ingredients.split(",");
+		addNewRecipe(recipesToSend);
 	};
 	return (
 		<main className="write">
@@ -88,7 +92,9 @@ const Write = () => {
 						required
 					/>
 					<div className="form-md">
-						<ReactMarkdown>{newRecipe.content}</ReactMarkdown>
+						<ReactMarkdown remarkPlugins={[remarkGfm]}>
+							{newRecipe.content}
+						</ReactMarkdown>
 					</div>
 				</div>
 				<div className="form-group">

@@ -103,6 +103,41 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const addNewRecipe = async (newRecipe) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post("/api/recipe/add", {
+				...newRecipe,
+			});
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setRecipes((prevRecipes) => [
+					...prevRecipes,
+					res.data.newRecipe,
+				]);
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Theme: light || dark
 	const [theme, setTheme] = useState(
@@ -148,6 +183,7 @@ export const useContextData = () => {
 		setRecipes,
 		getAllRecipes,
 		getSingleRecipe,
+		addNewRecipe,
 		getUserProfile,
 	};
 };

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ArrowLeftCircle, Bookmark } from "react-feather";
 import ReactMarkdown from "react-markdown";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import remarkGfm from "remark-gfm";
 import GlobalContext from "../../context/GlobalContext";
 import recipes from "../../utils/recipes";
 import "./recipe.css";
@@ -90,7 +91,9 @@ const Recipe = () => {
 								</ul>
 							</span>
 							<div className="recipe-content">
-								<ReactMarkdown>{recipe?.content}</ReactMarkdown>
+								<ReactMarkdown remarkPlugins={[remarkGfm]}>
+									{recipe?.content}
+								</ReactMarkdown>
 							</div>
 						</div>
 					</section>
