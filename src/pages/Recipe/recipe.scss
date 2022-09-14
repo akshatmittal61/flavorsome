@@ -22,11 +22,20 @@
             background-color: rgba(255, 255, 255, 0.5);
             border-radius: 12px;
 
-            &:first-child svg {
+        }
+
+        &-left {
+            button svg {
                 margin-right: 0.5rem;
             }
+        }
 
-            &:last-child {
+        &-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            button {
                 width: 3rem;
                 height: 3rem;
                 border-radius: 500px;

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ArrowLeftCircle, Bookmark } from "react-feather";
+import { ArrowLeftCircle, Bookmark, Edit } from "react-feather";
 import ReactMarkdown from "react-markdown";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import remarkGfm from "remark-gfm";
@@ -9,7 +9,7 @@ import "./recipe.css";
 
 const Recipe = () => {
 	const { id } = useParams();
-	const { getSingleRecipe, isLoading } = useContext(GlobalContext);
+	const { user, getSingleRecipe, isLoading } = useContext(GlobalContext);
 	const navigate = useNavigate();
 	const [recipe, setRecipe] = useState(null);
 	const body = document.querySelector("body");
@@ -34,15 +34,24 @@ const Recipe = () => {
 	return (
 		<main className="main">
 			<div className="main-cover">
-				<button
-					className="main-cover-back"
-					onClick={() => navigate(-1)}
-				>
-					<ArrowLeftCircle /> Go Back
-				</button>
-				<button className="main-cover-save">
-					<Bookmark />
-				</button>
+				<div className="main-cover-left">
+					<button
+						className="main-cover-back"
+						onClick={() => navigate(-1)}
+					>
+						<ArrowLeftCircle /> Go Back
+					</button>
+				</div>
+				<div className="main-cover-right">
+					{recipe?.user?.username === user?.username && (
+						<button className="main-cover-edit">
+							<Edit />
+						</button>
+					)}
+					<button className="main-cover-save">
+						<Bookmark />
+					</button>
+				</div>
 			</div>
 			{!isLoading && (
 				<div className="main-container" data-aos="fade-up">

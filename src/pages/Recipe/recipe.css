@@ -22,10 +22,15 @@
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 12px;
 }
-.main-cover button:first-child svg {
+.main-cover-left button svg {
   margin-right: 0.5rem;
 }
-.main-cover button:last-child {
+.main-cover-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.main-cover-right button {
   width: 3rem;
   height: 3rem;
   border-radius: 500px;
