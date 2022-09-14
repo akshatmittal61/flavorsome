@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Input from "../../components/Input/Input";
 import { searchEmpty, searchImg } from "../../utils/images";
-import recipes from "../../utils/recipes";
 import _ from "lodash";
 import "./search.css";
+import GlobalContext from "../../context/GlobalContext";
+import Masonry, { MasonryBox } from "../../layout/Masonry/Masonry";
+import RecipeFlex from "../../components/Recipe/RecipeFlex";
 
 const Search = () => {
 	const [searchStr, setSearchStr] = useState("");
+	const { recipes } = useContext(GlobalContext);
 
 	const matchesTitle = (title, str) => {
 		title = _.kebabCase(title);
@@ -82,11 +85,13 @@ const Search = () => {
 						</span>
 					</>
 				) : searchResults.length > 0 ? (
-					<ul>
+					<Masonry lg={2} md={2} sm={1}>
 						{searchResults.map((res, id) => (
-							<li key={id}>{res.title}</li>
+							<MasonryBox key={id}>
+								<RecipeFlex {...res} />
+							</MasonryBox>
 						))}
-					</ul>
+					</Masonry>
 				) : (
 					<>
 						<img

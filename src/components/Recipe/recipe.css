@@ -47,5 +47,64 @@
 .recipe-card:hover img {
   transform: scale(1.1) translateY(-2.5%);
 }
+.recipe-flex {
+  width: 90%;
+  margin: 1rem;
+  padding: 1rem;
+  border: 6px solid var(--indigo);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-size: cover;
+  background-blend-mode: lighten;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+.recipe-flex-user {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: fit-content;
+  margin: 0.75rem 0;
+}
+.recipe-flex-user__image {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.recipe-flex-user__image,
+.recipe-flex-user__image a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.recipe-flex-user__image img {
+  border-radius: 500px;
+}
+.recipe-flex-user__details {
+  height: 85%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin: auto 1rem;
+}
+.recipe-flex-user__details > * {
+  width: 100%;
+}
+.recipe-flex-user__details a {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+.recipe-flex-user__details span {
+  font-size: 0.875rem;
+  line-height: 1rem;
+}
+.recipe-flex h2 {
+  font-size: 2.5rem;
+  line-height: 2.75rem;
+  font-weight: 200;
+  width: fit-content;
+}
 
 /*# sourceMappingURL=recipe.css.map */

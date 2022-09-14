@@ -58,7 +58,6 @@ export const useContextData = () => {
 	const getSingleRecipe = async (id) => {
 		try {
 			const res = await axiosInstance.get(`/api/recipe/${id}`);
-			console.log(res.data);
 			return res.data;
 		} catch (error) {
 			setSnack({

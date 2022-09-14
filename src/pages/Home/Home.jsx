@@ -62,8 +62,8 @@ const Home = () => {
 				</div>
 			</section>
 			<Masonry lg={3} md={2} sm={1}>
-				{recipes.map((recipe) => (
-					<MasonryBox>
+				{recipes.map((recipe, id) => (
+					<MasonryBox key={id}>
 						<RecipeCard {...recipe} />
 					</MasonryBox>
 				))}

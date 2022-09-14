@@ -1,14 +1,37 @@
-const allowHeaderRoutes = ["/", "/about", "/search"];
-const allowFooterRoutes = ["/", "/about", "/search", "/recipe/:id", "/profile"];
+export const allowHeaderRoutes = ["/", "/about", "/search"];
+export const allowFooterRoutes = [
+	"/",
+	"/about",
+	"/search",
+	"/recipe/:id",
+	"/profile",
+];
 
-const allowHeader = (route) => {
+export const allowHeader = (route) => {
 	if (allowHeaderRoutes.includes(route)) return true;
 };
-const allowFooter = (route) => {
+export const allowFooter = (route) => {
 	if (allowFooterRoutes.includes(route)) return true;
 	if (route.slice(0, 8) === "/recipe/") return true;
 };
 
-const randomize = (low, high) => Math.floor(Math.random() * +high + +low);
+export const randomize = (low, high) =>
+	Math.floor(Math.random() * +high + +low);
 
-export { allowHeader, allowFooter, randomize };
+export const colors = [
+	"bgcolor",
+	"red",
+	"pink",
+	"purple",
+	"dark-purple",
+	"indigo",
+	"blue",
+	"light-blue",
+	"cyan",
+	"green",
+	"light-green",
+	"orange",
+	"brown",
+	"grey",
+	"blue-grey",
+];

@@ -8,7 +8,7 @@ import "./recipe.css";
 
 const Recipe = () => {
 	const { id } = useParams();
-	const { getSingleRecipe } = useContext(GlobalContext);
+	const { getSingleRecipe, isLoading } = useContext(GlobalContext);
 	const navigate = useNavigate();
 	const [recipe, setRecipe] = useState(null);
 	const body = document.querySelector("body");
@@ -26,7 +26,6 @@ const Recipe = () => {
 		setRecipe(() => fetchedRecipe);
 	};
 	useEffect(() => {
-		console.log(id);
 		if (!isNaN(id)) setRecipe(recipes.find((o) => o._id === id));
 		else fetchRecipe();
 	}, [fetchRecipe, getSingleRecipe, id]);
@@ -44,49 +43,59 @@ const Recipe = () => {
 					<Bookmark />
 				</button>
 			</div>
-			<div className="main-container" data-aos="fade-up">
-				<section className="recipe">
-					<div className="recipe-body">
-						<div className="recipe-title">
-							<h1>{recipe?.title}</h1>
-						</div>
-						<div className="recipe-user">
-							<div className="recipe-user__image">
-								<Link to={`/users/${recipe?.user?.username}`}>
-									<img
-										src={recipe?.user?.avatar}
-										alt={
-											recipe?.user?.fname +
+			{!isLoading && (
+				<div className="main-container" data-aos="fade-up">
+					<section className="recipe">
+						<div className="recipe-body">
+							<div className="recipe-title">
+								<h1>{recipe?.title}</h1>
+							</div>
+							<div className="recipe-user">
+								<div className="recipe-user__image">
+									<Link
+										to={`/users/${recipe?.user?.username}`}
+									>
+										<img
+											src={recipe?.user?.avatar}
+											alt={
+												recipe?.user?.fname +
+												" " +
+												recipe?.user?.lname
+											}
+										/>
+									</Link>
+								</div>
+								<div className="recipe-user__details">
+									<Link
+										to={`/users/${recipe?.user?.username}`}
+									>
+										{recipe?.user?.fname +
 											" " +
-											recipe?.user?.lname
-										}
-									/>
-								</Link>
+											recipe?.user?.lname}
+									</Link>
+									<span>{recipe?.date}</span>
+								</div>
 							</div>
-							<div className="recipe-user__details">
-								<Link to={`/users/${recipe?.user?.username}`}>
-									{recipe?.user?.fname +
-										" " +
-										recipe?.user?.lname}
-								</Link>
-								<span>{recipe?.date}</span>
+							<span className="recipe-about">
+								{recipe?.about}
+							</span>
+							<span className="recipe-ingredients">
+								<h3>Ingredients</h3>
+								<ul>
+									{recipe?.ingredients?.map(
+										(ingredient, id) => (
+											<li key={id}>{ingredient}</li>
+										)
+									)}
+								</ul>
+							</span>
+							<div className="recipe-content">
+								<ReactMarkdown>{recipe?.content}</ReactMarkdown>
 							</div>
 						</div>
-						<span className="recipe-about">{recipe?.about}</span>
-						<span className="recipe-ingredients">
-							<h3>Ingredients</h3>
-							<ul>
-								{recipe?.ingredients?.map((ingredient, id) => (
-									<li key={id}>{ingredient}</li>
-								))}
-							</ul>
-						</span>
-						<div className="recipe-content">
-							<ReactMarkdown>{recipe?.content}</ReactMarkdown>
-						</div>
-					</div>
-				</section>
-			</div>
+					</section>
+				</div>
+			)}
 		</main>
 	);
 };
