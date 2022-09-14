@@ -175,6 +175,27 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const getAllRecipesByUsername = async (username) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get(
+				`/api/recipe/${username}/recipes`
+			);
+			setIsLoading(false);
+			return res.data.allRecipes;
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Theme: light || dark
 	const [theme, setTheme] = useState(
@@ -223,5 +244,6 @@ export const useContextData = () => {
 		addNewRecipe,
 		updateOneRecipe,
 		getUserProfile,
+		getAllRecipesByUsername,
 	};
 };

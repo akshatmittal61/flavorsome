@@ -6,9 +6,9 @@ import { getUser } from "./auth.mjs";
 const getAllRecipes = async (req, res) => {
 	try {
 		let allRecipes = await Recipe.find({});
-		let recipesToSend = [];
 		if (!allRecipes)
 			return res.status(404).json({ message: "No Recipes found" });
+		let recipesToSend = [];
 		for (const recipe of allRecipes) {
 			const res = await getUser(recipe.user);
 			recipesToSend.push({ ...omit(recipe, "user"), user: res });
@@ -89,13 +89,17 @@ const editRecipe = async (req, res) => {
 
 const getAllRecipesByUsername = async (req, res) => {
 	const { username } = req.params;
-	console.log(username);
 	try {
 		const foundUser = await User.findOne({ username });
 		if (!foundUser)
 			return res.status(400).json({ message: "No User found" });
 		const allRecipes = await Recipe.find({ user: foundUser._id });
-		return res.status(200).json({ allRecipes: allRecipes });
+		let recipesToSend = [];
+		for (const recipe of allRecipes) {
+			const res = await getUser(recipe.user);
+			recipesToSend.push({ ...omit(recipe, "user"), user: res });
+		}
+		return res.status(200).json({ allRecipes: recipesToSend });
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: "Server Error" });

@@ -1,9 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ArrowLeftCircle, Edit, Save } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import RecipeFlex from "../../components/Recipe/RecipeFlex";
 import GlobalContext from "../../context/GlobalContext";
+import Masonry, { MasonryBox } from "../../layout/Masonry/Masonry";
 import Row, { Col } from "../../layout/Responsive";
 import { userFallBackImg } from "../../utils/images";
 import "./profile.css";
@@ -16,11 +18,13 @@ const Profile = () => {
 		setSnack,
 		setOpenSnackBar,
 		updateUser,
+		getAllRecipesByUsername,
 	} = useContext(GlobalContext);
 	const [profileUser, setProfileUser] = useState({
 		...user,
 	});
 	const [userImage, setUserImage] = useState(user?.avatar);
+	const [userRecipes, setUserRecipes] = useState([]);
 	const navigate = useNavigate();
 	const [edit, setEdit] = useState(false);
 	const handleChange = (e) => {
@@ -87,6 +91,15 @@ const Profile = () => {
 			setIsLoading(false);
 		}
 	};
+	useEffect(() => {
+		const getAllRecipes = async () => {
+			const res = await getAllRecipesByUsername(user.username);
+			setUserRecipes(() => res);
+		};
+		getAllRecipes();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user.username]);
+
 	return (
 		<main className="profile">
 			<section className="profile-head">
@@ -107,6 +120,7 @@ const Profile = () => {
 					{edit ? <Save /> : <Edit />}
 				</button>
 			</section>
+			<div style={{ height: "20vh" }}></div>
 			<section className="profile-container">
 				<div className="profile-image">
 					<img
@@ -207,6 +221,18 @@ const Profile = () => {
 						<Button className="dispn" type="submit" />
 					</form>
 				</div>
+			</section>
+			<section className="profile-recipes">
+				<h1>
+					Recipes by {user.fname} {user.lname}
+				</h1>
+				<Masonry lg={2} md={2} sm={1}>
+					{userRecipes.map((res, id) => (
+						<MasonryBox key={id}>
+							<RecipeFlex {...res} />
+						</MasonryBox>
+					))}
+				</Masonry>
 			</section>
 		</main>
 	);
