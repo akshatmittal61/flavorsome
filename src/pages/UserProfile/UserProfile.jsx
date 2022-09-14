@@ -136,16 +136,20 @@ const UserProfile = () => {
 				</section>
 			)}
 			<section className="profile-recipes">
-				<h1>
-					Recipes by {profileUser.fname} {profileUser.lname}
-				</h1>
-				<Masonry lg={2} md={2} sm={1}>
-					{userRecipes.map((res, id) => (
-						<MasonryBox key={id}>
-							<RecipeFlex {...res} />
-						</MasonryBox>
-					))}
-				</Masonry>
+				{userRecipes.length > 0 && (
+					<>
+						<h1>
+							Recipes by {profileUser.fname} {profileUser.lname}
+						</h1>
+						<Masonry lg={2} md={2} sm={1}>
+							{userRecipes.map((res, id) => (
+								<MasonryBox key={id}>
+									<RecipeFlex {...res} />
+								</MasonryBox>
+							))}
+						</Masonry>
+					</>
+				)}
 			</section>
 		</main>
 	);

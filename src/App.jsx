@@ -27,14 +27,24 @@ import Edit from "./pages/Edit/Edit";
 
 const Wrapper = () => {
 	AOS.init();
-	const { breakpoint, getAllRecipes, snack, openSnackBar, setOpenSnackBar } =
-		useContext(GlobalContext);
+	const {
+		breakpoint,
+		getAllRecipes,
+		snack,
+		openSnackBar,
+		setOpenSnackBar,
+		verifyUser,
+	} = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		getAllRecipes();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [location.pathname]);
+	useEffect(() => {
+		if (JSON.parse(localStorage.getItem("isAuthenticated"))) verifyUser();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>

@@ -43,6 +43,31 @@ export const useContextData = () => {
 		);
 		setUser((p) => ({ ...p, ...newUser }));
 	};
+	const verifyUser = async () => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get("/api/auth");
+			setUser(res.data.user);
+			localStorage.setItem("user", JSON.stringify(res.data.user));
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+			localStorage.removeItem("token");
+			localStorage.removeItem("user");
+			localStorage.setItem("isAuthenticated", false);
+			setUser(null);
+			setIsAuthenticated(false);
+		}
+	};
 
 	// Get User Profile
 	const getUserProfile = async (username) => {
@@ -236,6 +261,7 @@ export const useContextData = () => {
 		user,
 		setUser,
 		updateUser,
+		verifyUser,
 		axiosInstance,
 		recipes,
 		setRecipes,
