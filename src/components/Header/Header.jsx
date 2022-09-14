@@ -7,20 +7,34 @@ import Button from "../Button/Button";
 import "./header.css";
 
 const Header = () => {
-	const { isAuthenticated } = useContext(GlobalContext);
+	const { isAuthenticated, user } = useContext(GlobalContext);
 	return (
 		<header className="header">
 			<div className="header-left">
-				{socials.map((social, id) => (
-					<a
-						href={social.link}
-						key={id}
-						target="_blank"
-						rel="noreferrer"
-					>
-						{social.icon}
-					</a>
-				))}
+				{isAuthenticated ? (
+					<Button
+						text={user.username}
+						icon="account_circle"
+						color="black"
+						size="small"
+						variant="outline"
+						link="/profile"
+						style={{
+							marginRight: "1rem",
+						}}
+					/>
+				) : (
+					socials.map((social, id) => (
+						<a
+							href={social.link}
+							key={id}
+							target="_blank"
+							rel="noreferrer"
+						>
+							{social.icon}
+						</a>
+					))
+				)}
 			</div>
 			<div className="header-mid">
 				<nav>
@@ -36,7 +50,9 @@ const Header = () => {
 						})}
 					</ul>
 				</nav>
-				<h1>FlavorSome</h1>
+				<h1>
+					<Link to="/">FlavorSome</Link>
+				</h1>
 				<nav>
 					<ul>
 						{navLinks.map((nav, id) => {

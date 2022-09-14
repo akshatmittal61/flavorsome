@@ -112,6 +112,9 @@
   align-items: center;
   position: relative;
 }
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
 .footer-bottom::before {
   content: "";
   position: absolute;
