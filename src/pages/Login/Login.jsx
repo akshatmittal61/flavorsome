@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import { loginBg } from "../../utils/images";
@@ -18,9 +18,11 @@ const Login = () => {
 		setIsLoading,
 		setSnack,
 		setOpenSnackBar,
+		isAuthenticated,
 		setIsAuthenticated,
 		updateUser,
 	} = useContext(GlobalContext);
+	const navigate = useNavigate();
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setLoginUser((p) => ({
@@ -66,6 +68,9 @@ const Login = () => {
 			setIsLoading(false);
 		}
 	};
+	useEffect(() => {
+		if (isAuthenticated) navigate(-1);
+	}, [isAuthenticated, navigate]);
 	return (
 		<main className="login">
 			<aside

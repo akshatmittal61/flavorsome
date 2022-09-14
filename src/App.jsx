@@ -21,6 +21,7 @@ import Profile from "./pages/Profile/Profile";
 import Write from "./pages/Write/Write";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import SnackBar from "./components/SnackBar/SnackBar";
+import PrivateRoute from "./components/PrivateRoute";
 
 const Wrapper = () => {
 	AOS.init();
@@ -40,9 +41,23 @@ const Wrapper = () => {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/about" element={<About />} />
-				<Route path="/write" element={<Write />} />
+				<Route
+					path="/write"
+					element={
+						<PrivateRoute>
+							<Write />
+						</PrivateRoute>
+					}
+				/>
 				<Route path="/users/:username" element={<UserProfile />} />
-				<Route path="/profile" element={<Profile />} />
+				<Route
+					path="/profile"
+					element={
+						<PrivateRoute>
+							<Profile />
+						</PrivateRoute>
+					}
+				/>
 				<Route path="/search" element={<Search />} />
 				<Route path="/recipe/:id" element={<Recipe />} />
 				<Route path="/login" element={<Login />} />
