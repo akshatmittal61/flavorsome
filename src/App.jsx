@@ -22,6 +22,7 @@ import Write from "./pages/Write/Write";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import SnackBar from "./components/SnackBar/SnackBar";
 import PrivateRoute from "./components/PrivateRoute";
+import Logout from "./pages/Logout";
 
 const Wrapper = () => {
 	AOS.init();
@@ -63,6 +64,7 @@ const Wrapper = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/contact" element={<Contact />} />
+				<Route path="/logout" element={<Logout />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			{openSnackBar && (

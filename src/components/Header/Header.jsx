@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import GlobalContext from "../../context/GlobalContext";
 import navLinks from "../../utils/navigation";
 import socials from "../../utils/socials";
 import Button from "../Button/Button";
 import "./header.css";
 
 const Header = () => {
+	const { isAuthenticated } = useContext(GlobalContext);
 	return (
 		<header className="header">
 			<div className="header-left">
@@ -50,14 +52,25 @@ const Header = () => {
 				</nav>
 			</div>
 			<div className="header-right">
-				<Button
-					text="Login"
-					icon="account_circle"
-					color="black"
-					size="small"
-					variant="outline"
-					link="/login"
-				/>
+				{isAuthenticated ? (
+					<Button
+						text="Logout"
+						icon="logout"
+						color="black"
+						size="small"
+						variant="outline"
+						link="/logout"
+					/>
+				) : (
+					<Button
+						text="Login"
+						icon="login"
+						color="black"
+						size="small"
+						variant="outline"
+						link="/login"
+					/>
+				)}
 			</div>
 		</header>
 	);
