@@ -6,6 +6,7 @@ import bg404 from "../images/404-bg.png";
 import svg404 from "../images/404.svg";
 import searchImg from "../images/search.svg";
 import searchEmpty from "../images/empty.svg";
+import aboutImg from "../images/ice-cream.png";
 
 export default favicon;
 export {
@@ -16,4 +17,5 @@ export {
 	svg404,
 	searchImg,
 	searchEmpty,
+	aboutImg,
 };

@@ -1,30 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import favicon from "../../utils/images";
+import { aboutImg } from "../../utils/images";
 import "./about.css";
 
 const About = () => {
 	return (
 		<main className="about">
 			<section className="about-image">
-				<img src={favicon} alt="FlavorSome" data-aos="zoom-in" />
+				<img src={aboutImg} alt="FlavorSome" />
 			</section>
 			<section className="about-content">
 				<span>About Us</span>
 				<h1>FlavorSome</h1>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna
-					aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-					Duis aute irure dolor in reprehenderit in voluptate velit
-					deserunt mollit anim id est laborum.
+					FlavorSome allows you to view various delicious recipes
+					shared by the users and gives you the privilege to share
+					your recipe too!
 				</p>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna
-					ullamco laboris nisi ut aliquip ex ea commodo consequat.
-					Duis aute irure dolor in reprehenderit in voluptate velit
-					occaecat cupidatat non proident, sunt in culpa qui officia
+					Grab this opportunity now and show the world how amazing
+					your recipes are!
+				</p>
+				<p>
+					Search for what you want to cook and Hurray! Impress others
+					with mouth-watering viands.
+				</p>
+				<p>
+					<Link to="/register">Create your account</Link> and log in{" "}
+					<Link to="/login">here</Link> to get started !
 				</p>
 				<Button
 					text="Contact Us"
