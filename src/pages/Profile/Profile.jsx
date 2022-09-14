@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ArrowLeftCircle, Edit, Save } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import GlobalContext from "../../context/GlobalContext";
 import Row, { Col } from "../../layout/Responsive";
+import { userFallBackImg } from "../../utils/images";
 import "./profile.css";
 
 const Profile = () => {
+	const {
+		user,
+		axiosInstance,
+		setIsLoading,
+		setSnack,
+		setOpenSnackBar,
+		updateUser,
+	} = useContext(GlobalContext);
 	const [profileUser, setProfileUser] = useState({
-		fname: "Akshat",
-		lname: "Mittal",
-		email: "akshatmittal2506@gmail.com",
-		username: "akshatmittal61",
-		bio: "MERN Stack Developer",
-		phone: "9456849466",
-		avatar: "https://github.com/akshatmittal61.png",
+		...user,
 	});
+	const [userImage, setUserImage] = useState(user?.avatar);
 	const navigate = useNavigate();
 	const [edit, setEdit] = useState(false);
 	const handleChange = (e) => {
@@ -34,8 +39,53 @@ const Profile = () => {
 	};
 	const handleSubmit = async (e) => {
 		e?.preventDefault();
-		console.log(profileUser);
-		setEdit(false);
+		let editedUser = { username: user.username };
+		for (let i in profileUser)
+			if (profileUser[i] !== user[i])
+				editedUser = { ...editedUser, [i]: profileUser[i] };
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.put("/api/auth/edit", {
+				...editedUser,
+			});
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				updateUser({ ...res.data.user });
+				setProfileUser({ ...profileUser, ...res.data.user });
+				setUserImage(res.data.user?.avatar);
+				setEdit(false);
+			} else {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--yellow)",
+					color: "var(--white)",
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+			}
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response.data.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
 	};
 	return (
 		<main className="profile">
@@ -59,7 +109,11 @@ const Profile = () => {
 			</section>
 			<section className="profile-container">
 				<div className="profile-image">
-					<img src={profileUser.avatar} alt={profileUser.username} />
+					<img
+						src={userImage}
+						alt={profileUser.username}
+						onError={() => setUserImage(userFallBackImg)}
+					/>
 				</div>
 				<div className="profile-content">
 					<form className="profile-form" onSubmit={handleSubmit}>
