@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
@@ -6,12 +6,21 @@ import { loginBg } from "../../utils/images";
 import "./login.css";
 import "../../components/Button/button.css";
 import Back from "../../components/Button/Back";
+import GlobalContext from "../../context/GlobalContext";
 
 const Login = () => {
 	const [loginUser, setLoginUser] = useState({
 		username: "",
 		password: "",
 	});
+	const {
+		axiosInstance,
+		setIsLoading,
+		setSnack,
+		setOpenSnackBar,
+		setIsAuthenticated,
+		updateUser,
+	} = useContext(GlobalContext);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setLoginUser((p) => ({
@@ -19,13 +28,43 @@ const Login = () => {
 			[name]: value,
 		}));
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e?.preventDefault();
-		console.log(loginUser);
-		setLoginUser({
-			username: "",
-			password: "",
-		});
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post("/api/auth/login", {
+				...loginUser,
+			});
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setTimeout(() => {
+					setIsAuthenticated(true);
+				}, 1000);
+				localStorage.setItem("token", res.data.token);
+				localStorage.setItem("isAuthenticated", true);
+				updateUser({ ...res.data.user });
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error?.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
 	};
 	return (
 		<main className="login">

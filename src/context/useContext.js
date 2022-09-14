@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { omit } from "../utils";
 import { default as defaultRecipes } from "../utils/recipes";
 
 export const useContextData = () => {
@@ -33,6 +34,15 @@ export const useContextData = () => {
 	const [user, setUser] = useState(
 		JSON.parse(localStorage.getItem("user")) || null
 	);
+	const updateUser = (newUser) => {
+		localStorage.removeItem("user");
+		setUser(null);
+		localStorage.setItem(
+			"user",
+			JSON.stringify(omit({ ...user, ...newUser }, "password"))
+		);
+		setUser((p) => ({ ...p, ...newUser }));
+	};
 
 	// Get User Profile
 	const getUserProfile = async (username) => {
@@ -132,6 +142,7 @@ export const useContextData = () => {
 		setIsAuthenticated,
 		user,
 		setUser,
+		updateUser,
 		axiosInstance,
 		recipes,
 		setRecipes,

@@ -15,6 +15,7 @@ const GlobalContext = createContext({
 	setIsAuthenticated: () => {},
 	user: undefined,
 	setUser: () => {},
+	updateUser: () => {},
 	axiosInstance: undefined,
 	recipes: [],
 	setRecipes: () => {},
