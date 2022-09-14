@@ -20,10 +20,12 @@ import Search from "./pages/Search/Search";
 import Profile from "./pages/Profile/Profile";
 import Write from "./pages/Write/Write";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import SnackBar from "./components/SnackBar/SnackBar";
 
 const Wrapper = () => {
 	AOS.init();
-	const { breakpoint, getAllRecipes } = useContext(GlobalContext);
+	const { breakpoint, getAllRecipes, snack, openSnackBar, setOpenSnackBar } =
+		useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -48,6 +50,14 @@ const Wrapper = () => {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
+			{openSnackBar && (
+				<SnackBar
+					text={snack.text}
+					bgColor={snack.bgColor}
+					color={snack.color}
+					close={() => setOpenSnackBar(false)}
+				/>
+			)}
 			{allowFooter(location.pathname) && <Footer />}
 		</>
 	);

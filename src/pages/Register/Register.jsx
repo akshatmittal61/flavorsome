@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Back from "../../components/Button/Back";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import GlobalContext from "../../context/GlobalContext";
 import Row, { Col } from "../../layout/Responsive";
 import { registerBg } from "../../utils/images";
 import "./register.css";
@@ -17,6 +18,9 @@ const Register = () => {
 		confirmPassword: "",
 		avatar: "",
 	});
+	const { axiosInstance, setSnack, setOpenSnackBar, setIsLoading } =
+		useContext(GlobalContext);
+	const navigate = useNavigate();
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -25,18 +29,50 @@ const Register = () => {
 			[name]: value,
 		}));
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e?.preventDefault();
-		console.log(registerUser);
-		setRegisterUser({
-			fname: "",
-			lname: "",
-			email: "",
-			username: "",
-			password: "",
-			confirmPassword: "",
-			avatar: "",
-		});
+		if (registerUser.password !== registerUser.confirmPassword) {
+			setSnack({
+				text: "Passwords do not match",
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+		} else {
+			try {
+				setIsLoading(true);
+				const res = await axiosInstance.post("/api/auth/register", {
+					...registerUser,
+				});
+				if (res.status === 200) {
+					setSnack({
+						text: res.data.message,
+						bgColor: "var(--green)",
+						color: "var(--white)",
+					});
+					setOpenSnackBar(true);
+					setTimeout(() => {
+						setOpenSnackBar(false);
+					}, 5000);
+					setIsLoading(false);
+					navigate("/login");
+				}
+			} catch (error) {
+				setSnack({
+					text: error.response.data.message,
+					bgColor: "var(--red)",
+					color: "var(--white)",
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		}
 	};
 	return (
 		<main className="register">

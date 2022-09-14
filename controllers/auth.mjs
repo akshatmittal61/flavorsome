@@ -8,10 +8,6 @@ const register = async (req, res) => {
 	const { fname, lname, email, username, password, avatar } = req.body;
 	if (!fname || !lname || !email || !password || !username)
 		return res.status(400).json({ message: "Invalid Data" });
-	if (password.length < 6)
-		return res.status(400).json({
-			message: "Password should be a minimum of 6 characters",
-		});
 	try {
 		let user = await User.findOne({ email });
 		if (user)
@@ -21,6 +17,10 @@ const register = async (req, res) => {
 			return res
 				.status(400)
 				.json({ message: "This username has been taken" });
+		if (password.length < 6)
+			return res.status(400).json({
+				message: "Password should be a minimum of 6 characters",
+			});
 		user = new User({ fname, lname, email, password, username, avatar });
 		user.password = await bcrypt.hash(password, 10);
 		await user.save();
