@@ -101,7 +101,11 @@ const Search = () => {
 								margin: "2.5% auto",
 							}}
 						/>
-						<h2>
+						<h2
+							style={{
+								margin: "2rem 0",
+							}}
+						>
 							Could not find any results matching "{searchStr}"
 						</h2>
 					</>

@@ -89,5 +89,27 @@
 .profile-content form .col-lg-100 .form-group {
   width: 95%;
 }
+.profile-null {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-flow: column;
+}
+.profile-null-image {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-null-image img {
+  max-width: 100%;
+}
+.profile-null-image h2 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 200;
+  margin: 1rem auto;
+}
 
 /*# sourceMappingURL=profile.css.map */

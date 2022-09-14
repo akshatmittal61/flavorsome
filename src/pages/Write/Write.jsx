@@ -31,7 +31,8 @@ const Write = () => {
 	};
 	const handleSubmit = (e) => {
 		e?.preventDefault();
-		console.log(newRecipe);
+		let recipesToSend = { ...newRecipe };
+		recipesToSend.ingredients = newRecipe.ingredients.split(",");
 	};
 	return (
 		<main className="write">
@@ -69,7 +70,7 @@ const Write = () => {
 				/>
 				<Input
 					type="text"
-					placeholder="Ingredients"
+					placeholder="Ingredients (seperate by comma)"
 					icon="soup_kitchen"
 					name="ingredients"
 					value={newRecipe.ingredients}

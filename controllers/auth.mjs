@@ -133,8 +133,9 @@ const getUser = async (id) => {
 const getProfile = async (req, res) => {
 	const userName = req.params.username;
 	try {
-		const foundUser = await User.find({ username: userName });
-		console.log(foundUser);
+		const foundUser = await User.findOne({ username: userName }).select(
+			"-password"
+		);
 		if (!foundUser)
 			return res.status(404).json({ message: "No User Found" });
 		return res.status(200).json({ message: "User found", user: foundUser });

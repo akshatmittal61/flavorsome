@@ -19,6 +19,7 @@ import Recipe from "./pages/Recipe/Recipe";
 import Search from "./pages/Search/Search";
 import Profile from "./pages/Profile/Profile";
 import Write from "./pages/Write/Write";
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 const Wrapper = () => {
 	AOS.init();
@@ -38,6 +39,7 @@ const Wrapper = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/write" element={<Write />} />
+				<Route path="/users/:username" element={<UserProfile />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/search" element={<Search />} />
 				<Route path="/recipe/:id" element={<Recipe />} />

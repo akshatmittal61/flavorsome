@@ -1,3 +1,6 @@
+.search {
+  height: auto;
+}
 .search-head {
   margin: 1rem;
   text-align: center;
@@ -24,6 +27,7 @@
 }
 .search-body {
   width: 100%;
+  height: auto;
   display: flex;
   justify-content: flex-start;
   align-items: center;

@@ -34,6 +34,27 @@ export const useContextData = () => {
 		JSON.parse(localStorage.getItem("user")) || null
 	);
 
+	// Get User Profile
+	const getUserProfile = async (username) => {
+		try {
+			const res = await axiosInstance.get(
+				`/api/auth/profile/${username}`
+			);
+			return res.data.user;
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+
 	// Recipes state
 	const [recipes, setRecipes] = useState(defaultRecipes);
 	const getAllRecipes = async () => {
@@ -116,5 +137,6 @@ export const useContextData = () => {
 		setRecipes,
 		getAllRecipes,
 		getSingleRecipe,
+		getUserProfile,
 	};
 };
