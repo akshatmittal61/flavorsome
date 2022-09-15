@@ -1,4 +1,4 @@
-import { omit } from "../helpers/index.mjs";
+import { omit, remove } from "../helpers/index.mjs";
 import Recipe from "../models/Recipe.mjs";
 import User from "../models/User.mjs";
 import { getUser } from "./auth.mjs";
@@ -132,6 +132,35 @@ const saveRecipe = async (req, res) => {
 	}
 };
 
+const unSaveRecipe = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const foundRecipe = await Recipe.findById(id);
+		if (!foundRecipe)
+			return res.status(400).json({ message: "Could not find recipe" });
+		const foundUser = await User.findById(req.user.id);
+		if (!foundUser.saved.includes(id))
+			return res
+				.status(409)
+				.json({ message: "Recipe is not saved by User" });
+		let newSavedRecpies = remove(foundUser.saved, id);
+		let updatedUser = await User.findByIdAndUpdate(
+			req.user.id,
+			{
+				$set: { saved: newSavedRecpies },
+			},
+			{ new: true }
+		).select("-password");
+		return res.status(200).json({
+			message: "Unsaved Recipe successfully",
+			user: updatedUser,
+		});
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const getSavedRecipes = async (req, res) => {
 	try {
 		const foundUser = await User.findById(req.user.id);
@@ -161,5 +190,6 @@ export {
 	editRecipe,
 	getAllRecipesByUsername,
 	saveRecipe,
+	unSaveRecipe,
 	getSavedRecipes,
 };
