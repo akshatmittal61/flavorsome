@@ -9,6 +9,7 @@ import searchEmpty from "../images/empty.svg";
 import aboutImg from "../images/ice-cream.png";
 import userFallBackImg from "../images/user.svg";
 import accessDenied from "../images/access-denied.svg";
+import emptyCart from "../images/empty-cart.svg";
 
 export default favicon;
 export {
@@ -22,4 +23,5 @@ export {
 	aboutImg,
 	userFallBackImg,
 	accessDenied,
+	emptyCart,
 };
