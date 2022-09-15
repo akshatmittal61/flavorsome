@@ -24,6 +24,7 @@ import SnackBar from "./components/SnackBar/SnackBar";
 import PrivateRoute from "./components/PrivateRoute";
 import Logout from "./pages/Logout";
 import Edit from "./pages/Edit/Edit";
+import Saved from "./pages/Saved/Saved";
 
 const Wrapper = () => {
 	AOS.init();
@@ -75,6 +76,14 @@ const Wrapper = () => {
 					element={
 						<PrivateRoute>
 							<Profile />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/saved"
+					element={
+						<PrivateRoute>
+							<Saved />
 						</PrivateRoute>
 					}
 				/>

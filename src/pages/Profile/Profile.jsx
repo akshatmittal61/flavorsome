@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ArrowLeftCircle, Edit, Save } from "react-feather";
+import { ArrowLeftCircle, Edit, ExternalLink, Save } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
@@ -225,9 +225,26 @@ const Profile = () => {
 			<section className="profile-recipes">
 				{userRecipes.length > 0 && (
 					<>
-						<h1>
-							Recipes by {user.fname} {user.lname}
-						</h1>
+						<div className="profile-recipes-head">
+							<h1>
+								Recipes by {user.fname} {user.lname}
+							</h1>
+							<Button
+								text={
+									<>
+										<ExternalLink
+											style={{ width: "1.25rem" }}
+										/>
+										<span style={{ marginLeft: "0.5rem" }}>
+											Saved Recipes
+										</span>
+									</>
+								}
+								variant="outline"
+								link="/saved"
+								size="small"
+							/>
+						</div>
 						<Masonry lg={2} md={2} sm={1}>
 							{userRecipes.map((res, id) => (
 								<MasonryBox key={id}>

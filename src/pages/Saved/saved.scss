@@ -1,0 +1,19 @@
+.saved {
+    width: 100%;
+    padding: 0 5%;
+
+    &-head {
+        width: 100%;
+
+        h1 {
+            font-size: 3rem;
+            line-height: 3.5rem;
+            font-weight: 200;
+            padding: 1rem;
+        }
+    }
+
+    &-body {
+        width: 100%;
+    }
+}

@@ -1,10 +1,11 @@
-export const allowHeaderRoutes = ["/", "/about", "/search", "/write"];
+export const allowHeaderRoutes = ["/", "/about", "/search", "/write", "/saved"];
 export const allowFooterRoutes = [
 	"/",
 	"/about",
 	"/search",
 	"/profile",
 	"/write",
+	"/saved",
 ];
 
 export const allowHeader = (route) => {

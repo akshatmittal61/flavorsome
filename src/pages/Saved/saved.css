@@ -1,0 +1,18 @@
+.saved {
+  width: 100%;
+  padding: 0 5%;
+}
+.saved-head {
+  width: 100%;
+}
+.saved-head h1 {
+  font-size: 3rem;
+  line-height: 3.5rem;
+  font-weight: 200;
+  padding: 1rem;
+}
+.saved-body {
+  width: 100%;
+}
+
+/*# sourceMappingURL=saved.css.map */
