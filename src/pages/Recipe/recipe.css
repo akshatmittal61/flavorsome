@@ -11,6 +11,15 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+@media (max-width: 672px) {
+  .main-cover {
+    padding: 1rem 5.5rem 1rem 1rem;
+  }
+}
+.main-cover svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
 .main-cover button {
   width: fit-content;
   height: auto;

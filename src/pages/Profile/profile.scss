@@ -1,3 +1,5 @@
+@import "../../config";
+
 .profile {
     width: 100%;
     display: flex;
@@ -28,6 +30,15 @@
         position: absolute;
         background-image: url(https://www.transparenttextures.com/patterns/inspiration-geometry.png);
         background-attachment: fixed;
+
+        @include respond(phone) {
+            padding: 1rem 5.5rem 1rem 1rem;
+        }
+
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
 
         button {
             width: fit-content;
@@ -64,6 +75,13 @@
         border-radius: 40px;
         background-color: var(--bgcolor);
         box-shadow: var(--shadow-elevation-2dp);
+
+        @include respond(phone) {
+            width: 95%;
+            height: 35rem;
+            height: auto;
+            flex-flow: column;
+        }
     }
 
     &-image {
@@ -74,6 +92,11 @@
         align-items: center;
         margin-top: 3rem;
 
+        @include respond(phone) {
+            width: 100%;
+            margin: 2rem auto;
+        }
+
         img {
             border-radius: 500px;
         }
@@ -81,6 +104,10 @@
 
     &-content {
         width: calc(90% - 20rem);
+
+        @include respond(phone) {
+            width: 100%;
+        }
 
         form {
             width: 100%;
@@ -97,6 +124,10 @@
 
             .col-lg-100 .form-group {
                 width: 95%;
+
+                @include respond(phone) {
+                    width: 90%;
+                }
             }
         }
     }

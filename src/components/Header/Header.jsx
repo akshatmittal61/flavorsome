@@ -7,7 +7,7 @@ import Button from "../Button/Button";
 import "./header.css";
 
 const Header = () => {
-	const { isAuthenticated, user } = useContext(GlobalContext);
+	const { isAuthenticated, user, breakpoint } = useContext(GlobalContext);
 	return (
 		<header className="header">
 			<div className="header-left">
@@ -36,37 +36,43 @@ const Header = () => {
 					))
 				)}
 			</div>
-			<div className="header-mid">
-				<nav>
-					<ul>
-						{navLinks.map((nav, id) => {
-							return (
-								id < navLinks.length / 2 && (
-									<li key={id}>
-										<Link to={nav.route}>{nav.title}</Link>
-									</li>
-								)
-							);
-						})}
-					</ul>
-				</nav>
-				<h1>
-					<Link to="/">FlavorSome</Link>
-				</h1>
-				<nav>
-					<ul>
-						{navLinks.map((nav, id) => {
-							return (
-								id >= navLinks.length / 2 && (
-									<li key={id}>
-										<Link to={nav.route}>{nav.title}</Link>
-									</li>
-								)
-							);
-						})}
-					</ul>
-				</nav>
-			</div>
+			{!breakpoint("mobile") && (
+				<div className="header-mid">
+					<nav>
+						<ul>
+							{navLinks.map((nav, id) => {
+								return (
+									id < navLinks.length / 2 && (
+										<li key={id}>
+											<Link to={nav.route}>
+												{nav.title}
+											</Link>
+										</li>
+									)
+								);
+							})}
+						</ul>
+					</nav>
+					<h1>
+						<Link to="/">FlavorSome</Link>
+					</h1>
+					<nav>
+						<ul>
+							{navLinks.map((nav, id) => {
+								return (
+									id >= navLinks.length / 2 && (
+										<li key={id}>
+											<Link to={nav.route}>
+												{nav.title}
+											</Link>
+										</li>
+									)
+								);
+							})}
+						</ul>
+					</nav>
+				</div>
+			)}
 			<div className="header-right">
 				{isAuthenticated ? (
 					<Button

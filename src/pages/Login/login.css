@@ -13,12 +13,22 @@
   background-position-x: center;
   background-position-y: bottom;
 }
+@media (max-width: 672px) {
+  .login-side {
+    width: 0;
+  }
+}
 .login-page {
   width: 65%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 672px) {
+  .login-page {
+    width: 100%;
+  }
 }
 .login-container {
   width: 75%;

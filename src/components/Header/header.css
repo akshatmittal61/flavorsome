@@ -7,6 +7,11 @@
   align-items: center;
   padding: 0 1rem;
 }
+@media (max-width: 672px) {
+  .header {
+    padding: 0 5rem 0 1rem;
+  }
+}
 .header-left {
   display: flex;
   justify-content: space-evenly;

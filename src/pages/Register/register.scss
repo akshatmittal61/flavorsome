@@ -1,3 +1,5 @@
+@import "../../config";
+
 .register {
     width: 100vw;
     height: 100vh;
@@ -12,13 +14,10 @@
         background-size: cover;
         background-position-x: center;
         background-position-y: bottom;
-    }
 
-    &-back {
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        transform: none;
+        @include respond(phone) {
+            width: 0;
+        }
     }
 
     &-page {
@@ -27,6 +26,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @include respond(phone) {
+            width: 100%;
+        }
     }
 
     &-container {
@@ -50,6 +53,10 @@
 
             .col-lg-100 .form-group {
                 width: 95%;
+
+                @include respond(phone) {
+                    width: 90%;
+                }
             }
 
 

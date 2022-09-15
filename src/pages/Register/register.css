@@ -13,11 +13,10 @@
   background-position-x: center;
   background-position-y: bottom;
 }
-.register-back {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  transform: none;
+@media (max-width: 672px) {
+  .register-side {
+    width: 0;
+  }
 }
 .register-page {
   width: 65%;
@@ -25,6 +24,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 672px) {
+  .register-page {
+    width: 100%;
+  }
 }
 .register-container {
   width: 75%;
@@ -46,6 +50,11 @@
 }
 .register-container form .col-lg-100 .form-group {
   width: 95%;
+}
+@media (max-width: 672px) {
+  .register-container form .col-lg-100 .form-group {
+    width: 90%;
+  }
 }
 .register-container form input {
   margin: 0.25rem 0;

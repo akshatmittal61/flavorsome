@@ -31,10 +31,20 @@
   align-items: flex-start;
   resize: vertical;
 }
+@media (max-width: 672px) {
+  .write form .form-flex {
+    flex-flow: column;
+  }
+}
 .write form .form-flex > * {
   width: 45%;
   height: 100%;
   resize: vertical;
+}
+@media (max-width: 672px) {
+  .write form .form-flex > * {
+    width: 95%;
+  }
 }
 .write form .form-flex textarea {
   min-height: 20rem;
@@ -199,6 +209,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+@media (max-width: 672px) {
+  .write form .form-group:last-child {
+    width: 80%;
+  }
 }
 .write-null {
   width: 80%;

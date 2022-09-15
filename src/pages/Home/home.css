@@ -20,6 +20,16 @@
   background-color: rgba(255, 255, 255, 0.5);
   padding: 0 10%;
 }
+@media (max-width: 880px) {
+  .home-hero-container {
+    padding: 0 7.5%;
+  }
+}
+@media (max-width: 672px) {
+  .home-hero-container {
+    padding: 0 5%;
+  }
+}
 .home-hero-details {
   display: flex;
   flex-flow: column;
@@ -32,10 +42,20 @@
   font-weight: 200;
   width: fit-content;
 }
+@media (max-width: 880px) {
+  .home-hero-details h1 {
+    font-size: 3.5rem;
+  }
+}
 .home-hero-details p {
   width: 60%;
   padding: 0 0.5rem;
   margin: 1rem 0;
+}
+@media (max-width: 880px) {
+  .home-hero-details p {
+    width: 85%;
+  }
 }
 .home-hero-user {
   display: flex;

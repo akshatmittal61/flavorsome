@@ -28,6 +28,15 @@
   background-image: url(https://www.transparenttextures.com/patterns/inspiration-geometry.png);
   background-attachment: fixed;
 }
+@media (max-width: 672px) {
+  .profile-head {
+    padding: 1rem 5.5rem 1rem 1rem;
+  }
+}
+.profile-head svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
 .profile-head button {
   width: fit-content;
   height: auto;
@@ -60,6 +69,14 @@
   background-color: var(--bgcolor);
   box-shadow: var(--shadow-elevation-2dp);
 }
+@media (max-width: 672px) {
+  .profile-container {
+    width: 95%;
+    height: 35rem;
+    height: auto;
+    flex-flow: column;
+  }
+}
 .profile-image {
   width: 15rem;
   height: 15rem;
@@ -68,11 +85,22 @@
   align-items: center;
   margin-top: 3rem;
 }
+@media (max-width: 672px) {
+  .profile-image {
+    width: 100%;
+    margin: 2rem auto;
+  }
+}
 .profile-image img {
   border-radius: 500px;
 }
 .profile-content {
   width: calc(90% - 20rem);
+}
+@media (max-width: 672px) {
+  .profile-content {
+    width: 100%;
+  }
 }
 .profile-content form {
   width: 100%;
@@ -88,6 +116,11 @@
 }
 .profile-content form .col-lg-100 .form-group {
   width: 95%;
+}
+@media (max-width: 672px) {
+  .profile-content form .col-lg-100 .form-group {
+    width: 90%;
+  }
 }
 .profile-null {
   display: flex;

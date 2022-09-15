@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import GlobalContext from "../../context/GlobalContext";
 import { aboutImg } from "../../utils/images";
 import "./about.css";
 
 const About = () => {
+	const { breakpoint } = useContext(GlobalContext);
 	return (
 		<main className="about">
 			<section className="about-image">
@@ -39,7 +41,7 @@ const About = () => {
 				<Button
 					text="Write your own recipe"
 					color="blue"
-					variant="outline"
+					variant={breakpoint("tab") ? "filled" : "outline"}
 					link="/write"
 				/>
 			</section>

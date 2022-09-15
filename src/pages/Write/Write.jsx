@@ -14,7 +14,7 @@ const Write = () => {
 		ingredients: "",
 		content: "",
 	});
-	const { addNewRecipe } = useContext(GlobalContext);
+	const { addNewRecipe, breakpoint } = useContext(GlobalContext);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setNewRecipe((p) => ({
@@ -42,11 +42,13 @@ const Write = () => {
 		<main className="write">
 			<section className="write-head">
 				<h1>Write your own Recipe !</h1>
-				<Button
-					text="Publish Recipe"
-					icon="save"
-					onClick={handleSubmit}
-				/>
+				{!breakpoint("mobile") && (
+					<Button
+						text="Publish Recipe"
+						icon="save"
+						onClick={handleSubmit}
+					/>
+				)}
 			</section>
 			<form onSubmit={handleSubmit} onReset={handleReset}>
 				<Input
