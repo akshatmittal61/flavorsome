@@ -276,6 +276,25 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const getSavedRecipes = async () => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.get(`/api/recipe/saved`);
+			setIsLoading(false);
+			return resp.data.recipes;
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Theme: light || dark
 	const [theme, setTheme] = useState(
@@ -328,5 +347,6 @@ export const useContextData = () => {
 		getAllRecipesByUsername,
 		saveRecipe,
 		unSaveRecipe,
+		getSavedRecipes,
 	};
 };

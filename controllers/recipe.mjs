@@ -167,12 +167,17 @@ const getSavedRecipes = async (req, res) => {
 		if (!foundUser)
 			return res.status(401).json({ message: "User not found" });
 		let savedRecipes = foundUser.saved;
-		let recipesToSend = [];
+		let allRecipes = [];
 		for (const recipeId of savedRecipes) {
 			const fetchedRecipe = await Recipe.findById(recipeId.toString());
 			if (!fetchedRecipe)
 				return res.status(400).json({ message: "Invalid recipe id" });
-			recipesToSend = [...recipesToSend, fetchedRecipe];
+			allRecipes = [...allRecipes, fetchedRecipe];
+		}
+		let recipesToSend = [];
+		for (const recipe of allRecipes) {
+			const res = await getUser(recipe.user);
+			recipesToSend.push({ ...omit(recipe, "user"), user: res });
 		}
 		return res
 			.status(200)

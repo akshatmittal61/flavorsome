@@ -28,6 +28,7 @@ const GlobalContext = createContext({
 	getAllRecipesByUsername: () => {},
 	saveRecipe: () => {},
 	unSaveRecipe: () => {},
+	getSavedRecipes: () => {},
 });
 
 export default GlobalContext;
