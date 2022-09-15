@@ -30,7 +30,7 @@ const Contact = () => {
 				process.env.REACT_APP_USER
 			)
 			.then((res) => console.log(res))
-			.catch((err) => console.log(err));
+			.catch((err) => console.error(err));
 		setUserMessage({
 			name: "",
 			email: "",

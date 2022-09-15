@@ -44,7 +44,6 @@ const Search = () => {
 			if (recipe.title.includes(searchStr))
 				setSearchResults((p) => [...p, recipe]);
 		});
-		console.log(searchStr);
 	};
 	return (
 		<main className="search">

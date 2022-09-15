@@ -37,7 +37,7 @@ const register = async (req, res) => {
 			});
 		});
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		res.status(500).json({ message: "Server Error" });
 	}
 };
@@ -70,7 +70,7 @@ const login = async (req, res) => {
 			});
 		});
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		res.status(500).json({ message: "Server Error" });
 	}
 };
@@ -80,7 +80,7 @@ const verifyUser = async (req, res) => {
 		const user = await User.findById(req.user.id).select("-password");
 		return res.json({ user: user, message: "User Verified" });
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		return res.status(500).json({ message: "Server Error" });
 	}
 };
