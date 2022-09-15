@@ -220,6 +220,34 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const saveRecipe = async (id) => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/recipe/save/${id}`);
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			updateUser(resp.data.user);
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Theme: light || dark
 	const [theme, setTheme] = useState(
@@ -270,5 +298,6 @@ export const useContextData = () => {
 		updateOneRecipe,
 		getUserProfile,
 		getAllRecipesByUsername,
+		saveRecipe,
 	};
 };

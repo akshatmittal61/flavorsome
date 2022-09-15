@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ArrowLeftCircle, Bookmark, Edit } from "react-feather";
+import { ArrowLeftCircle, Bookmark, CheckCircle, Edit } from "react-feather";
 import ReactMarkdown from "react-markdown";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import remarkGfm from "remark-gfm";
@@ -8,7 +8,8 @@ import "./recipe.css";
 
 const Recipe = () => {
 	const { id } = useParams();
-	const { user, getSingleRecipe, isLoading } = useContext(GlobalContext);
+	const { user, getSingleRecipe, isLoading, saveRecipe } =
+		useContext(GlobalContext);
 	const navigate = useNavigate();
 	const [recipe, setRecipe] = useState(null);
 	const body = document.querySelector("body");
@@ -45,12 +46,25 @@ const Recipe = () => {
 						<button
 							className="main-cover-edit"
 							onClick={() => navigate(`/edit/${id}`)}
+							title="Edit Recipe"
 						>
 							<Edit />
 						</button>
 					)}
-					<button className="main-cover-save">
-						<Bookmark />
+					<button
+						className="main-cover-save"
+						onClick={() => saveRecipe(id)}
+						title={
+							user?.saved?.includes(id)
+								? "Recipe Saved"
+								: "Save Recipe"
+						}
+					>
+						{user?.saved?.includes(id) ? (
+							<CheckCircle />
+						) : (
+							<Bookmark />
+						)}
 					</button>
 				</div>
 			</div>
