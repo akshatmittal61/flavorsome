@@ -132,6 +132,29 @@ const saveRecipe = async (req, res) => {
 	}
 };
 
+const getSavedRecipes = async (req, res) => {
+	try {
+		const foundUser = await User.findById(req.user.id);
+		if (!foundUser)
+			return res.status(401).json({ message: "User not found" });
+		let savedRecipes = foundUser.saved;
+		console.log(savedRecipes);
+		let recipesToSend = [];
+		for (const recipeId of savedRecipes) {
+			const fetchedRecipe = await Recipe.findById(recipeId.toString());
+			if (!fetchedRecipe)
+				return res.status(400).json({ message: "Invalid recipe id" });
+			recipesToSend = [...recipesToSend, fetchedRecipe];
+		}
+		return res
+			.status(200)
+			.json({ message: "Fetched Saved Recipes", recipes: recipesToSend });
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 export {
 	getAllRecipes,
 	getRecipe,
@@ -139,4 +162,5 @@ export {
 	editRecipe,
 	getAllRecipesByUsername,
 	saveRecipe,
+	getSavedRecipes,
 };
