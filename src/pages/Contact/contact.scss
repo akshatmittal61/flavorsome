@@ -1,3 +1,5 @@
+@import "../../config";
+
 .contact {
     width: 100%;
     height: 100vh;
@@ -13,6 +15,11 @@
         align-items: center;
         box-shadow: var(--shadow-elevation-8dp);
         border-radius: 4px;
+
+        @include respond(phone) {
+            width: 95%;
+            height: 98.5%;
+        }
     }
 
     &-left,
@@ -27,6 +34,10 @@
         background-position-x: center;
         background-blend-mode: lighten;
         background-color: rgba(255, 255, 255, 0.35);
+
+        @include respond(phone) {
+            width: 0;
+        }
     }
 
     &-right {
@@ -35,6 +46,10 @@
         align-items: flex-start;
         flex-flow: column;
         padding: 0.125% 2rem;
+
+        @include respond(phone) {
+            width: 100%;
+        }
 
         h1,
         h2 {

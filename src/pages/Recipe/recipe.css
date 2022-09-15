@@ -117,6 +117,9 @@
 .recipe-ingredients ul li {
   margin: 0.35rem 0;
 }
+.recipe-content {
+  overflow-x: auto;
+}
 .recipe-content img {
   object-fit: cover;
   max-width: 100%;

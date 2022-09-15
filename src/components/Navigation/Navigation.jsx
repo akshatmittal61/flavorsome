@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import navLinks from "../../utils/navigation";
 import MaterialIcons from "../MaterialIcons";
 import "./navigation.css";
 
 const Navigation = () => {
 	const [openNav, setOpenNav] = useState(false);
+	const location = useLocation();
 	useEffect(() => {
 		document.addEventListener("keydown", (e) => {
 			if (e.key === "Escape") setOpenNav(false);
@@ -16,6 +17,10 @@ const Navigation = () => {
 			});
 		};
 	}, [setOpenNav]);
+	useEffect(() => {
+		setOpenNav(false);
+	}, [location.pathname]);
+
 	return (
 		<div className={`nav ${openNav && "nav-open"}`}>
 			<button className="nav-label" onClick={() => setOpenNav(!openNav)}>

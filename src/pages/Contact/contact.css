@@ -14,6 +14,12 @@
   box-shadow: var(--shadow-elevation-8dp);
   border-radius: 4px;
 }
+@media (max-width: 672px) {
+  .contact-container {
+    width: 95%;
+    height: 98.5%;
+  }
+}
 .contact-left, .contact-right {
   width: 50%;
   height: 100%;
@@ -25,12 +31,22 @@
   background-blend-mode: lighten;
   background-color: rgba(255, 255, 255, 0.35);
 }
+@media (max-width: 672px) {
+  .contact-left {
+    width: 0;
+  }
+}
 .contact-right {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
   flex-flow: column;
   padding: 0.125% 2rem;
+}
+@media (max-width: 672px) {
+  .contact-right {
+    width: 100%;
+  }
 }
 .contact-right h1,
 .contact-right h2 {
