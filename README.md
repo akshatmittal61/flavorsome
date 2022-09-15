@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# FlavorSome
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Never miss out on any new food and dishes idea. Share your own reciepies and read others' with FlavorSome.
 
-## Available Scripts
+![Recipe](./images/recipe-1.png)
 
-In the project directory, you can run:
+# Introduction
 
-### `npm start`
+ FlavorSome allows you to view various delicious recipes shared by the users and gives you the privilege to share your recipe too!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Grab this opportunity now and show the world how amazing your recipes are!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Search for what you want to cook and Hurray! Impress others with mouth-watering viands.
 
-### `npm test`
+-   **Runtime used for whole application** - [Node.js](https://nodejs.org/)
+-   **Frontend framework** - [React JS](https://reactjs.org/)
+-   **CSS preprocessor** - [SASS](https://sass-lang.com/)
+-   **Backend framework** - [Express](https://expressjs.com/)
+-   **Database** - [MongoDB](https://www.mongodb.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Development
 
-### `npm run build`
+To clone copy the following command in your terminal and start development.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+git clone https://github.com/akshatmittal61/flavorsome.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+cd into the directory
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+cd flavorsome
+```
 
-### `npm run eject`
+Install all the dependencies
+```sh
+npm i
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Run the project in development mode
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+npm run react
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Run the backend server
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```sh
+npm run server
+```
+This will run the server on port [$PORT](http://localhost:5000) locally with nodemon to continuously watch every change.
 
-## Learn More
+If you don't have nodemon on your system, run
+```sh
+npm i nodemon -g
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Environment Variables:
+Building the .env
+- **MONGO_CONNECTION_URL:** Create a database in MongoDB cluster and paste the connection string in here
 
-### Code Splitting
+- **PORT:** Assign a PORT to run teh backend server (usually `4000` or `5000`)
+- **JWT_SECRET:** Assign a string for the JWT web token or request the [developers](#author) to provide you with the official one.
+- **REACT_APP_BACKEND_URL:** Create the backend URL for which React App will send the server requests to.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Author
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Akshat Mittal](https://akshatmittal61.vercel.app)
