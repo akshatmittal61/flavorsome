@@ -10,7 +10,6 @@ const Saved = () => {
 	useEffect(() => {
 		const fetchSavedRecipes = async () => {
 			const res = await getSavedRecipes();
-			console.log(res);
 			setSavedRecipes(() => res);
 		};
 		fetchSavedRecipes();
