@@ -8,7 +8,7 @@ import "./recipe.css";
 
 const Recipe = () => {
 	const { id } = useParams();
-	const { user, getSingleRecipe, isLoading, saveRecipe } =
+	const { user, getSingleRecipe, isLoading, saveRecipe, unSaveRecipe } =
 		useContext(GlobalContext);
 	const navigate = useNavigate();
 	const [recipe, setRecipe] = useState(null);
@@ -53,7 +53,11 @@ const Recipe = () => {
 					)}
 					<button
 						className="main-cover-save"
-						onClick={() => saveRecipe(id)}
+						onClick={() =>
+							user?.saved?.includes(id)
+								? unSaveRecipe(id)
+								: saveRecipe(id)
+						}
 						title={
 							user?.saved?.includes(id)
 								? "Recipe Saved"
