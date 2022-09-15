@@ -4,7 +4,6 @@ import ReactMarkdown from "react-markdown";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import remarkGfm from "remark-gfm";
 import GlobalContext from "../../context/GlobalContext";
-import recipes from "../../utils/recipes";
 import "./recipe.css";
 
 const Recipe = () => {
@@ -27,8 +26,7 @@ const Recipe = () => {
 		setRecipe(() => fetchedRecipe);
 	};
 	useEffect(() => {
-		if (!isNaN(id)) setRecipe(recipes.find((o) => o._id === id));
-		else fetchRecipe();
+		fetchRecipe();
 	}, [fetchRecipe, getSingleRecipe, id]);
 
 	return (

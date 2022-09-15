@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { omit } from "../utils";
-import { default as defaultRecipes } from "../utils/recipes";
 
 export const useContextData = () => {
 	// Axios Instance Configurations
@@ -91,12 +90,12 @@ export const useContextData = () => {
 	};
 
 	// Recipes state
-	const [recipes, setRecipes] = useState(defaultRecipes);
+	const [recipes, setRecipes] = useState([]);
 	const getAllRecipes = async () => {
 		try {
 			setIsLoading(true);
 			const res = await axiosInstance.get("/api/recipe");
-			setRecipes(() => [...defaultRecipes, ...res.data.allRecipes]);
+			setRecipes(() => [...res.data.allRecipes]);
 			setIsLoading(false);
 		} catch (error) {
 			setSnack({

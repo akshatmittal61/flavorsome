@@ -42,7 +42,11 @@ const Write = () => {
 		<main className="write">
 			<section className="write-head">
 				<h1>Write your own Recipe !</h1>
-				<Button text="Publish Recipe" icon="save" />
+				<Button
+					text="Publish Recipe"
+					icon="save"
+					onClick={handleSubmit}
+				/>
 			</section>
 			<form onSubmit={handleSubmit} onReset={handleReset}>
 				<Input

@@ -24,40 +24,46 @@ const Home = () => {
 				<div
 					className="home-hero-container"
 					style={{
-						backgroundImage: `url(${heroRecipe.image})`,
+						backgroundImage: `url(${heroRecipe?.image})`,
 					}}
 				>
 					<div className="home-hero-details">
-						<Link to={`/recipe/${heroRecipe._id}`}>
-							<h1>{heroRecipe.title}</h1>
+						<Link to={`/recipe/${heroRecipe?._id}`}>
+							<h1>{heroRecipe?.title}</h1>
 						</Link>
 						<p>
-							{heroRecipe.about.length > 250
-								? heroRecipe.about.slice(0, 250) + "..."
-								: heroRecipe.about}
+							{heroRecipe?.about.length > 250
+								? heroRecipe?.about.slice(0, 250) + "..."
+								: heroRecipe?.about}
 						</p>
-						<div className="home-hero-user">
-							<div className="home-hero-user__image">
-								<Link to={`/users/${heroRecipe.user.username}`}>
-									<img
-										src={heroRecipe.user.avatar}
-										alt={
-											heroRecipe.user.fname +
+						{heroRecipe?.user && (
+							<div className="home-hero-user">
+								<div className="home-hero-user__image">
+									<Link
+										to={`/users/${heroRecipe?.user?.username}`}
+									>
+										<img
+											src={heroRecipe?.user?.avatar}
+											alt={
+												heroRecipe?.user?.fname +
+												" " +
+												heroRecipe?.user?.lname
+											}
+										/>
+									</Link>
+								</div>
+								<div className="home-hero-user__details">
+									<Link
+										to={`/users/${heroRecipe?.user?.username}`}
+									>
+										{heroRecipe?.user?.fname +
 											" " +
-											heroRecipe.user.lname
-										}
-									/>
-								</Link>
+											heroRecipe?.user?.lname}
+									</Link>
+									<span>{heroRecipe?.date}</span>
+								</div>
 							</div>
-							<div className="home-hero-user__details">
-								<Link to={`/users/${heroRecipe.user.username}`}>
-									{heroRecipe.user.fname +
-										" " +
-										heroRecipe.user.lname}
-								</Link>
-								<span>{heroRecipe.date}</span>
-							</div>
-						</div>
+						)}
 					</div>
 				</div>
 			</section>
