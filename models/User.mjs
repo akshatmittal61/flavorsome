@@ -37,6 +37,10 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			required: false,
 		},
+		saved: {
+			type: [mongoose.Schema.Types.ObjectId],
+			ref: "Recipe",
+		},
 	},
 	{ timestamps: true }
 );

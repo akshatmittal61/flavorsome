@@ -106,10 +106,37 @@ const getAllRecipesByUsername = async (req, res) => {
 	}
 };
 
+const saveRecipe = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const foundRecipe = await Recipe.findById(id);
+		if (!foundRecipe)
+			return res.status(400).json({ message: "Could not find recipe" });
+		const foundUser = await User.findById(req.user.id);
+		console.log(foundUser);
+		// let userToSet = { ...omit(foundUser, "") };
+		let newSavedRecpies = [...foundUser.saved, id];
+		let updatedUser = await User.findByIdAndUpdate(
+			req.user.id,
+			{
+				$set: { saved: newSavedRecpies },
+			},
+			{ new: true }
+		).select("-password");
+		return res
+			.status(200)
+			.json({ message: "Saved Recipe successfully", user: updatedUser });
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 export {
 	getAllRecipes,
 	getRecipe,
 	addRecipe,
 	editRecipe,
 	getAllRecipesByUsername,
+	saveRecipe,
 };

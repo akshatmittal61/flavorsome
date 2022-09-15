@@ -5,12 +5,14 @@ import {
 	getAllRecipes,
 	getAllRecipesByUsername,
 	getRecipe,
+	saveRecipe,
 } from "../controllers/recipe.mjs";
 import auth from "../middleware/auth.mjs";
 
 const router = Router();
 
 router.get("/", getAllRecipes);
+router.put("/save/:id", auth, saveRecipe);
 router.get("/:id", getRecipe);
 router.post("/add", auth, addRecipe);
 router.put("/edit/:id", auth, editRecipe);
