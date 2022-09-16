@@ -64,7 +64,7 @@ export const useContextData = () => {
 			localStorage.removeItem("user");
 			localStorage.setItem("isAuthenticated", false);
 			setUser(null);
-			setIsAuthenticated(false);
+			setIsAuthenticated(false); // If the user couldn't be verified, logout the user
 		}
 	};
 
@@ -73,7 +73,7 @@ export const useContextData = () => {
 		try {
 			const res = await axiosInstance.get(
 				`/api/auth/profile/${username}`
-			);
+			); // Fetch all the user profiles
 			return res.data.user;
 		} catch (error) {
 			setSnack({
@@ -94,7 +94,7 @@ export const useContextData = () => {
 	const getAllRecipes = async () => {
 		try {
 			setIsLoading(true);
-			const res = await axiosInstance.get("/api/recipe");
+			const res = await axiosInstance.get("/api/recipe"); // Fetch all user recipes
 			setRecipes(() => [...res.data.allRecipes]);
 			setIsLoading(false);
 		} catch (error) {
@@ -112,7 +112,7 @@ export const useContextData = () => {
 	};
 	const getSingleRecipe = async (id) => {
 		try {
-			const res = await axiosInstance.get(`/api/recipe/${id}`);
+			const res = await axiosInstance.get(`/api/recipe/${id}`); // Fetch single recipe by id
 			return res.data;
 		} catch (error) {
 			setSnack({
@@ -132,7 +132,7 @@ export const useContextData = () => {
 			setIsLoading(true);
 			const res = await axiosInstance.post("/api/recipe/add", {
 				...newRecipe,
-			});
+			}); // Add a new recipe
 			if (res.status === 200) {
 				setSnack({
 					text: res.data.message,
@@ -142,7 +142,7 @@ export const useContextData = () => {
 				setRecipes((prevRecipes) => [
 					...prevRecipes,
 					res.data.newRecipe,
-				]);
+				]); // If the recipe was added to the database successfully, update the recipes state.
 				setOpenSnackBar(true);
 				setTimeout(() => {
 					setOpenSnackBar(false);
@@ -167,7 +167,7 @@ export const useContextData = () => {
 			setIsLoading(true);
 			const resp = await axiosInstance.put(`/api/recipe/edit/${id}`, {
 				...updatedRecipe,
-			});
+			}); // Update the recipe by id and the updated fileds.
 			setRecipes((prevRecipes) => {
 				let newRecipes = prevRecipes.map((singleRecipe) =>
 					singleRecipe._id !== id
@@ -175,7 +175,7 @@ export const useContextData = () => {
 						: resp.data.updatedRecipe
 				);
 				return newRecipes;
-			});
+			}); // If the recipe is updated successfully, update the recipes state
 			setSnack({
 				text: resp.data.message,
 				bgColor: "var(--green)",
@@ -204,7 +204,7 @@ export const useContextData = () => {
 			setIsLoading(true);
 			const res = await axiosInstance.get(
 				`/api/recipe/${username}/recipes`
-			);
+			); // Fetch recipes by matching username
 			setIsLoading(false);
 			return res.data.allRecipes;
 		} catch (error) {
@@ -223,7 +223,7 @@ export const useContextData = () => {
 	const saveRecipe = async (id) => {
 		try {
 			setIsLoading(true);
-			const resp = await axiosInstance.put(`/api/recipe/save/${id}`);
+			const resp = await axiosInstance.put(`/api/recipe/save/${id}`); // Save a recipe by sending the user id and recipe id
 			setSnack({
 				text: resp.data.message,
 				bgColor: "var(--green)",
@@ -251,7 +251,7 @@ export const useContextData = () => {
 	const unSaveRecipe = async (id) => {
 		try {
 			setIsLoading(true);
-			const resp = await axiosInstance.put(`/api/recipe/unsave/${id}`);
+			const resp = await axiosInstance.put(`/api/recipe/unsave/${id}`); // Unsave a recipe by sending the user id and recipe id
 			setSnack({
 				text: resp.data.message,
 				bgColor: "var(--green)",
@@ -279,7 +279,7 @@ export const useContextData = () => {
 	const getSavedRecipes = async () => {
 		try {
 			setIsLoading(true);
-			const resp = await axiosInstance.get(`/api/recipe/saved`);
+			const resp = await axiosInstance.get(`/api/recipe/saved`); // Get all saved recipes by the user
 			setIsLoading(false);
 			return resp.data.recipes;
 		} catch (error) {

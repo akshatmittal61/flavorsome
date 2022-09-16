@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
 	app.get("*", (req, res) => {
 		res.sendFile(path.resolve(__dirname, "build", "index.html"));
 	});
-}
+} // Serve the build files if the app is in production mode
 
 app.listen(PORT, () => {
 	connect();
